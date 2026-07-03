@@ -112,6 +112,7 @@
             exit.TabIndex = 5;
             exit.Text = "Exit";
             exit.UseVisualStyleBackColor = false;
+            exit.Click += exit_Click;
             // 
             // Form1
             // 

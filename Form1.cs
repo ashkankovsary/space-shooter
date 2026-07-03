@@ -47,5 +47,10 @@ namespace Space_Shooter_game
             title.Font = new Font(title.Font.FontFamily, sz, title.Font.Style);
             title.Location = new Point((int)((this.ClientSize.Width - title.Width) / 2), 10);
         }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
