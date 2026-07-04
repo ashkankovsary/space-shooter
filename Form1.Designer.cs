@@ -54,10 +54,11 @@
             // 
             play.Anchor = AnchorStyles.None;
             play.BackColor = Color.Crimson;
+            play.Cursor = Cursors.Hand;
             play.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            play.Location = new Point(322, 90);
+            play.Location = new Point(238, 128);
             play.Name = "play";
-            play.Size = new Size(135, 50);
+            play.Size = new Size(303, 50);
             play.TabIndex = 1;
             play.Text = "Play";
             play.UseVisualStyleBackColor = false;
@@ -66,11 +67,12 @@
             // 
             shop.Anchor = AnchorStyles.None;
             shop.BackColor = Color.Crimson;
+            shop.Cursor = Cursors.Hand;
             shop.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            shop.Location = new Point(322, 160);
+            shop.Location = new Point(238, 195);
             shop.Margin = new Padding(0);
             shop.Name = "shop";
-            shop.Size = new Size(135, 50);
+            shop.Size = new Size(303, 50);
             shop.TabIndex = 2;
             shop.Text = "Shop";
             shop.UseVisualStyleBackColor = false;
@@ -79,11 +81,12 @@
             // 
             options.Anchor = AnchorStyles.None;
             options.BackColor = Color.Crimson;
+            options.Cursor = Cursors.Hand;
             options.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            options.Location = new Point(322, 230);
+            options.Location = new Point(238, 263);
             options.Margin = new Padding(0);
             options.Name = "options";
-            options.Size = new Size(135, 50);
+            options.Size = new Size(146, 50);
             options.TabIndex = 3;
             options.Text = "Options";
             options.UseVisualStyleBackColor = false;
@@ -92,11 +95,12 @@
             // 
             about.Anchor = AnchorStyles.None;
             about.BackColor = Color.Crimson;
+            about.Cursor = Cursors.Hand;
             about.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            about.Location = new Point(322, 300);
+            about.Location = new Point(400, 263);
             about.Margin = new Padding(0);
             about.Name = "about";
-            about.Size = new Size(135, 50);
+            about.Size = new Size(141, 50);
             about.TabIndex = 4;
             about.Text = "About";
             about.UseVisualStyleBackColor = false;
@@ -105,10 +109,11 @@
             // 
             exit.Anchor = AnchorStyles.None;
             exit.BackColor = Color.Crimson;
+            exit.Cursor = Cursors.Hand;
             exit.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            exit.Location = new Point(322, 370);
+            exit.Location = new Point(320, 331);
             exit.Name = "exit";
-            exit.Size = new Size(135, 50);
+            exit.Size = new Size(141, 50);
             exit.TabIndex = 5;
             exit.Text = "Exit";
             exit.UseVisualStyleBackColor = false;
