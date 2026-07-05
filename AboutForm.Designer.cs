@@ -42,13 +42,14 @@
             // 
             // backButton
             // 
+            backButton.BackColor = Color.Red;
             backButton.Cursor = Cursors.Hand;
             backButton.Location = new Point(0, 0);
             backButton.Name = "backButton";
             backButton.Size = new Size(46, 29);
             backButton.TabIndex = 0;
             backButton.Text = "<-";
-            backButton.UseVisualStyleBackColor = true;
+            backButton.UseVisualStyleBackColor = false;
             // 
             // contentPanel
             // 
@@ -93,6 +94,7 @@
             // author1Label
             // 
             author1Label.AutoSize = true;
+            author1Label.BackColor = Color.DodgerBlue;
             author1Label.Dock = DockStyle.Fill;
             author1Label.Location = new Point(3, 0);
             author1Label.Name = "author1Label";
@@ -104,6 +106,7 @@
             // author2Label
             // 
             author2Label.AutoSize = true;
+            author2Label.BackColor = Color.DodgerBlue;
             author2Label.Dock = DockStyle.Fill;
             author2Label.Location = new Point(173, 0);
             author2Label.Name = "author2Label";
@@ -114,6 +117,7 @@
             // 
             // descriptionBox
             // 
+            descriptionBox.BackColor = Color.DodgerBlue;
             descriptionBox.Dock = DockStyle.Fill;
             descriptionBox.Location = new Point(3, 106);
             descriptionBox.Multiline = true;
@@ -128,6 +132,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Navy;
             ClientSize = new Size(370, 416);
             Controls.Add(contentPanel);
             Controls.Add(backButton);

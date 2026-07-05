@@ -20,7 +20,6 @@ namespace Space_Shooter_game
 
 
             descriptionBox.BorderStyle = BorderStyle.None;
-            descriptionBox.BackColor = this.BackColor;
             descriptionBox.Cursor = Cursors.Default;
             descriptionBox.TabStop = false;
         }
