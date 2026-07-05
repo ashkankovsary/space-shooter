@@ -50,6 +50,7 @@
             backButton.TabIndex = 0;
             backButton.Text = "<-";
             backButton.UseVisualStyleBackColor = false;
+            backButton.Click += backButton_Click;
             // 
             // contentPanel
             // 
