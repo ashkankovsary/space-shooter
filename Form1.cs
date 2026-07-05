@@ -55,7 +55,6 @@ namespace Space_Shooter_game
             title.Font = new Font(title.Font.FontFamily, sz, title.Font.Style);
             title.Location = new Point((int)((this.ClientSize.Width - title.Width) / 2), 10);
 
-            // اگه About بازه، وقتی منو Resize میشه دوباره وسط‌چین کن
             if (aboutForm != null && !aboutForm.IsDisposed)
             {
                 isSyncingLocation = true;
@@ -69,7 +68,10 @@ namespace Space_Shooter_game
             }
         }
 
-
+        private void exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         private void about_Click(object sender, EventArgs e)
         {
             if (aboutForm != null && !aboutForm.IsDisposed)
@@ -88,8 +90,6 @@ namespace Space_Shooter_game
             lastMenuLocation = this.Location;
             lastAboutLocation = aboutForm.Location;
 
-            // فقط کنترل‌های داخل منو غیرفعال بشن، نه خود پنجره
-            // (پنجره همچنان قابل جابجاییه)
             SetChildControlsEnabled(this, false);
 
             this.LocationChanged += Menu_LocationChanged;
@@ -101,7 +101,8 @@ namespace Space_Shooter_game
                 SetChildControlsEnabled(this, true);
                 aboutForm = null;
             };
-            aboutForm.Show(); // Show نه ShowDialog، تا خود پنجره منو فعال بمونه
+
+            aboutForm.Show();
         }
 
         private void CenterAboutOnMenu()
@@ -134,7 +135,7 @@ namespace Space_Shooter_game
             lastAboutLocation = aboutForm.Location;
             isSyncingLocation = false;
         }
-        
+
         private void AboutForm_LocationChanged(object sender, EventArgs e)
         {
             if (isSyncingLocation || aboutForm == null) return;
@@ -148,10 +149,6 @@ namespace Space_Shooter_game
             lastMenuLocation = this.Location;
             lastAboutLocation = aboutForm.Location;
             isSyncingLocation = false;
-        }
-        private void exit_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
