@@ -10,6 +10,11 @@ namespace Space_Shooter_game
         private int baseWidth = 800;
         private int baseHeight = 500;
 
+        private AboutForm aboutForm;
+        private Point lastMenuLocation;
+        private Point lastAboutLocation;
+        private bool isSyncingLocation = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -18,7 +23,10 @@ namespace Space_Shooter_game
             this.Load += (s, e) => UpdateLayout();
 
             this.MinimumSize = new Size(1000, 600);
+
+            about.Click += about_Click;
         }
+
         private void UpdateLayout()
         {
             float heightRatio = (float)this.ClientSize.Height / baseHeight;
@@ -46,11 +54,101 @@ namespace Space_Shooter_game
             title.Width = (int)(335 * widthRatio);
             title.Font = new Font(title.Font.FontFamily, sz, title.Font.Style);
             title.Location = new Point((int)((this.ClientSize.Width - title.Width) / 2), 10);
+
+            if (aboutForm != null && !aboutForm.IsDisposed)
+            {
+                isSyncingLocation = true;
+
+                aboutForm.ApplySizeFromMenu(this.Size);
+                CenterAboutOnMenu();
+                lastMenuLocation = this.Location;
+                lastAboutLocation = aboutForm.Location;
+
+                isSyncingLocation = false;
+            }
         }
 
         private void exit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void about_Click(object sender, EventArgs e)
+        {
+            if (aboutForm != null && !aboutForm.IsDisposed)
+            {
+                aboutForm.Focus();
+                return;
+            }
+
+            aboutForm = new AboutForm();
+            aboutForm.Owner = this;
+            aboutForm.StartPosition = FormStartPosition.Manual;
+
+            aboutForm.ApplySizeFromMenu(this.Size);
+            CenterAboutOnMenu();
+
+            lastMenuLocation = this.Location;
+            lastAboutLocation = aboutForm.Location;
+
+            SetChildControlsEnabled(this, false);
+
+            this.LocationChanged += Menu_LocationChanged;
+            aboutForm.LocationChanged += AboutForm_LocationChanged;
+
+            aboutForm.FormClosed += (s, args) =>
+            {
+                this.LocationChanged -= Menu_LocationChanged;
+                SetChildControlsEnabled(this, true);
+                aboutForm = null;
+            };
+
+            aboutForm.Show();
+        }
+
+        private void CenterAboutOnMenu()
+        {
+            if (aboutForm == null) return;
+            int x = this.Location.X + (this.Width - aboutForm.Width) / 2;
+            int y = this.Location.Y + (this.Height - aboutForm.Height) / 2;
+            aboutForm.Location = new Point(x, y);
+        }
+
+        private void SetChildControlsEnabled(Control parent, bool enabled)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                c.Enabled = enabled;
+            }
+        }
+
+        private void Menu_LocationChanged(object sender, EventArgs e)
+        {
+            if (isSyncingLocation || aboutForm == null || aboutForm.IsDisposed) return;
+
+            isSyncingLocation = true;
+            int dx = this.Location.X - lastMenuLocation.X;
+            int dy = this.Location.Y - lastMenuLocation.Y;
+
+            aboutForm.Location = new Point(aboutForm.Location.X + dx, aboutForm.Location.Y + dy);
+
+            lastMenuLocation = this.Location;
+            lastAboutLocation = aboutForm.Location;
+            isSyncingLocation = false;
+        }
+
+        private void AboutForm_LocationChanged(object sender, EventArgs e)
+        {
+            if (isSyncingLocation || aboutForm == null) return;
+
+            isSyncingLocation = true;
+            int dx = aboutForm.Location.X - lastAboutLocation.X;
+            int dy = aboutForm.Location.Y - lastAboutLocation.Y;
+
+            this.Location = new Point(this.Location.X + dx, this.Location.Y + dy);
+
+            lastMenuLocation = this.Location;
+            lastAboutLocation = aboutForm.Location;
+            isSyncingLocation = false;
         }
     }
 }
