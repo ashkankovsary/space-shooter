@@ -41,7 +41,7 @@ namespace Space_Shooter_game
                 child._lastLocation = child.Location;
                 this.LocationChanged += HandleParentMoved;
                 child.LocationChanged += child.HandleChildMoved;
-                this.Resize += child.HandleParentResized;
+                this.Resize += this.HandleParentResized;
             }
 
             child.Show();
@@ -86,11 +86,26 @@ namespace Space_Shooter_game
             ParentManagedForm._lastLocation = ParentManagedForm.Location;
         }
 
+        // Runs on the PARENT when the parent resizes: re-run the child's own
+        // layout logic, then recenter it — without letting that programmatic
+        // move trigger the child's own "user dragged me" handler.
         private void HandleParentResized(object sender, EventArgs e)
         {
             if (ActiveChild == null || ActiveChild.IsDisposed) return;
             ActiveChild.ApplyLayout();
+
+            if (ActiveChild.SyncsLocationWithParent)
+                ActiveChild.LocationChanged -= ActiveChild.HandleChildMoved;
+            
             CenterOnParent(ActiveChild);
+
+            if (ActiveChild.SyncsLocationWithParent)
+            {
+                ActiveChild._lastLocation = ActiveChild.Location;
+                ActiveChild.LocationChanged += ActiveChild.HandleChildMoved;
+            }
+
+            _lastLocation = this.Location;
         }
         private void SetChildControlsEnabled(Control target, bool enabled)
         {
@@ -109,7 +124,7 @@ namespace Space_Shooter_game
                 if (SyncsLocationWithParent)
                 {
                     ParentManagedForm.LocationChanged -= ParentManagedForm.HandleParentMoved;
-                    ParentManagedForm.Resize -= this.HandleParentResized;
+                    ParentManagedForm.Resize -= ParentManagedForm.HandleParentResized;
                     this.LocationChanged -= this.HandleChildMoved;
                 }
 
