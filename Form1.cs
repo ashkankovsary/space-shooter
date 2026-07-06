@@ -20,6 +20,7 @@ namespace Space_Shooter_game
             this.MinimumSize = new Size(1000, 600);
 
             about.Click += about_Click;
+            play.Click += play_Click;
         }
 
         protected override void ApplyLayout(){}
@@ -59,6 +60,14 @@ namespace Space_Shooter_game
         private void about_Click(object sender, EventArgs e)
         {
             this.OpenChild(new AboutForm());
+        }
+        private void play_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            PlayForm playForm = new PlayForm();
+            playForm.FormClosed += (s, args) => this.Show();
+            playForm.Show();
         }
     }
 }
