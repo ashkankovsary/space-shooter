@@ -41,7 +41,7 @@ namespace Space_Shooter_game
                 child._lastLocation = child.Location;
                 this.LocationChanged += HandleParentMoved;
                 child.LocationChanged += child.HandleChildMoved;
-                this.Resize += child.HandleParentResized;
+                this.Resize += this.HandleParentResized;
             }
 
             child.Show();
@@ -109,7 +109,7 @@ namespace Space_Shooter_game
                 if (SyncsLocationWithParent)
                 {
                     ParentManagedForm.LocationChanged -= ParentManagedForm.HandleParentMoved;
-                    ParentManagedForm.Resize -= this.HandleParentResized;
+                    ParentManagedForm.Resize -= ParentManagedForm.HandleParentResized;
                     this.LocationChanged -= this.HandleChildMoved;
                 }
 
