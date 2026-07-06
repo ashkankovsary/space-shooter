@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Space_Shooter_game
 {
-    public partial class AboutForm : Form
+    public partial class AboutForm : ManagedForm
     {
         public AboutForm()
         {
@@ -24,9 +24,11 @@ namespace Space_Shooter_game
             descriptionBox.TabStop = false;
         }
 
-        public void ApplySizeFromMenu(Size menuSize)
+        protected override void ApplyLayout()
         {
-            int height = (int)(menuSize.Height * 0.55f);
+            if (ParentManagedForm == null) return;
+
+            int height = (int)(ParentManagedForm.Size.Height * 0.55f);
             int width = 400;
 
             this.Size = new Size(width, height);
