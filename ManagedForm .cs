@@ -44,13 +44,14 @@ namespace Space_Shooter_game
                 this.Resize += this.HandleParentResized;
             }
 
+            this.Hide();
             child.Show();
         }
 
         private void CenterOnParent(ManagedForm child)
         {
-            int x = this.Location.X + (this.Width - child.Width) / 2;
-            int y = this.Location.Y + (this.Height - child.Height) / 2;
+            int x = this.Location.X; // + (this.Width - child.Width) / 2;
+            int y = this.Location.Y; // + (this.Height - child.Height) / 2;
             child.Location = new Point(x, y);
         }
 
