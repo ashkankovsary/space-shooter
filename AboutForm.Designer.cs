@@ -94,6 +94,7 @@
             // 
             // author1Label
             // 
+            author1Label.Font = new Font("Segoe UI", 18, FontStyle.Regular);
             author1Label.AutoSize = true;
             author1Label.BackColor = Color.DodgerBlue;
             author1Label.Dock = DockStyle.Fill;
@@ -106,6 +107,7 @@
             // 
             // author2Label
             // 
+            author2Label.Font = new Font("Segoe UI", 18, FontStyle.Regular);
             author2Label.AutoSize = true;
             author2Label.BackColor = Color.DodgerBlue;
             author2Label.Dock = DockStyle.Fill;
@@ -118,6 +120,7 @@
             // 
             // descriptionBox
             // 
+            descriptionBox.Font = new Font("Bahnschrift", 18);
             descriptionBox.BackColor = Color.DodgerBlue;
             descriptionBox.Dock = DockStyle.Fill;
             descriptionBox.Location = new Point(3, 106);
@@ -127,7 +130,10 @@
             descriptionBox.ScrollBars = ScrollBars.Vertical;
             descriptionBox.Size = new Size(340, 260);
             descriptionBox.TabIndex = 1;
-            descriptionBox.Text = "description...";
+            descriptionBox.Text = "This game was developed in C# as a Windows Forms (WinForms) application." +
+                " The behavior of its entities is managed using Object-Oriented Programming (OOP) principles." +
+                " Essential game data is stored and managed using an SQLite database." +
+                "\r\n\r\nWe hope you enjoy playing this game!\r\n";
             // 
             // AboutForm
             // 

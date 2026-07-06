@@ -28,8 +28,8 @@ namespace Space_Shooter_game
         {
             if (ParentManagedForm == null) return;
 
-            int height = (int)(ParentManagedForm.Size.Height * 0.55f);
-            int width = 400;
+            int height = 600;
+            int width = 1000;
 
             this.Size = new Size(width, height);
         }
@@ -37,6 +37,7 @@ namespace Space_Shooter_game
         private void backButton_Click(object sender, EventArgs e)
         {
             this.Close();
+            this.ParentManagedForm.Show();
         }
     }
 }
