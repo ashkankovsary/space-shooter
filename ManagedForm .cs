@@ -8,13 +8,14 @@ namespace Space_Shooter_game
     {
         public ManagedForm ParentManagedForm { get; private set; }
         public ManagedForm ActiveChild { get; private set; }
+
         private Point _lastLocation;
 
         protected ManagedForm()
         {
             this.FormClosed += ManagedForm_FormClosed;
         }
-        protected abstract void ApplyInitialLayout();
+        protected abstract void ApplyLayout();
         protected virtual bool SyncsLocationWithParent => true;
         public void OpenChild(ManagedForm child)
         {
@@ -28,7 +29,7 @@ namespace Space_Shooter_game
             child.Owner = this;
             child.StartPosition = FormStartPosition.Manual;
 
-            child.ApplyInitialLayout();
+            child.ApplyLayout();
             CenterOnParent(child);
 
             ActiveChild = child;
@@ -40,6 +41,7 @@ namespace Space_Shooter_game
                 child._lastLocation = child.Location;
                 this.LocationChanged += HandleParentMoved;
                 child.LocationChanged += child.HandleChildMoved;
+                this.Resize += child.HandleParentResized;
             }
 
             child.Show();
@@ -52,7 +54,6 @@ namespace Space_Shooter_game
             child.Location = new Point(x, y);
         }
 
-        // Runs on the PARENT when the parent's window moves: shifts the child by the same delta.
         private void HandleParentMoved(object sender, EventArgs e)
         {
             if (ActiveChild == null || ActiveChild.IsDisposed) return;
@@ -61,7 +62,7 @@ namespace Space_Shooter_game
             int dy = this.Location.Y - _lastLocation.Y;
             if (dx == 0 && dy == 0) return;
 
-            ActiveChild.LocationChanged -= ActiveChild.HandleChildMoved; // avoid reentrancy
+            ActiveChild.LocationChanged -= ActiveChild.HandleChildMoved;
             ActiveChild.Location = new Point(ActiveChild.Location.X + dx, ActiveChild.Location.Y + dy);
             ActiveChild.LocationChanged += ActiveChild.HandleChildMoved;
 
@@ -69,7 +70,6 @@ namespace Space_Shooter_game
             ActiveChild._lastLocation = ActiveChild.Location;
         }
 
-        // Runs on the CHILD when the child's window moves: shifts the parent by the same delta.
         private void HandleChildMoved(object sender, EventArgs e)
         {
             if (ParentManagedForm == null) return;
@@ -78,7 +78,7 @@ namespace Space_Shooter_game
             int dy = this.Location.Y - _lastLocation.Y;
             if (dx == 0 && dy == 0) return;
 
-            ParentManagedForm.LocationChanged -= ParentManagedForm.HandleParentMoved; // avoid reentrancy
+            ParentManagedForm.LocationChanged -= ParentManagedForm.HandleParentMoved;
             ParentManagedForm.Location = new Point(ParentManagedForm.Location.X + dx, ParentManagedForm.Location.Y + dy);
             ParentManagedForm.LocationChanged += ParentManagedForm.HandleParentMoved;
 
@@ -86,14 +86,17 @@ namespace Space_Shooter_game
             ParentManagedForm._lastLocation = ParentManagedForm.Location;
         }
 
+        private void HandleParentResized(object sender, EventArgs e)
+        {
+            if (ActiveChild == null || ActiveChild.IsDisposed) return;
+            ActiveChild.ApplyLayout();
+            CenterOnParent(ActiveChild);
+        }
         private void SetChildControlsEnabled(Control target, bool enabled)
         {
             foreach (Control c in target.Controls)
                 c.Enabled = enabled;
         }
-
-        // When THIS form closes: close its own active child first (cascade),
-        // then re-enable the parent's controls (if it has a parent).
         private void ManagedForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (ActiveChild != null && !ActiveChild.IsDisposed)
@@ -106,6 +109,7 @@ namespace Space_Shooter_game
                 if (SyncsLocationWithParent)
                 {
                     ParentManagedForm.LocationChanged -= ParentManagedForm.HandleParentMoved;
+                    ParentManagedForm.Resize -= this.HandleParentResized;
                     this.LocationChanged -= this.HandleChildMoved;
                 }
 
