@@ -16,7 +16,7 @@ namespace Space_Shooter_game
         public int Damage;
 
         public Bullet(float x, float y, float dirX, float dirY, float speed, BulletOwner owner, int damage)
-            : base(x, y, speed, collisionRadius: 3f)
+    : base(x, y, speed, collisionRadius: GameSettings.Bullet.CollisionRadius)
         {
             DirX = dirX;
             DirY = dirY;

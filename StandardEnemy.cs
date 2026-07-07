@@ -5,7 +5,7 @@ namespace Space_Shooter_game
     public class StandardEnemy : Enemy
     {
         public StandardEnemy(float x, float y)
-            : base(x, y, speed: 2f, collisionRadius: 10f, maxHP: 10, scoreValue: 10)
+    : base(x, y, speed: GameSettings.StandardEnemy.Speed, collisionRadius: GameSettings.StandardEnemy.CollisionRadius, maxHP: GameSettings.StandardEnemy.MaxHP, scoreValue: GameSettings.StandardEnemy.ScoreValue)
         {
         }
 

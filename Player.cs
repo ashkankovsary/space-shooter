@@ -13,7 +13,7 @@ namespace Space_Shooter_game
         public bool MovingRight;
 
         public Player(float x, float y)
-            : base(x, y, speed: 4f, collisionRadius: 10f, maxHP: 100)
+    : base(x, y, speed: GameSettings.Player.Speed, collisionRadius: GameSettings.Player.CollisionRadius, maxHP: GameSettings.Player.MaxHP)
         {
         }
 
