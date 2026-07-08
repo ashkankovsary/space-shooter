@@ -19,6 +19,7 @@ namespace Space_Shooter_game
             bulletList = new List<Bullet>();
 
             enemyList.Add(new StandardEnemy(600, 200));
+            enemyList.Add(new ScoutEnemy(900, 200));
         }
 
         public void Update()

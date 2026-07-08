@@ -21,5 +21,15 @@
             public static readonly int MaxHP = 10;
             public static readonly int ScoreValue = 10;
         }
+
+        public static class ScoutEnemy
+        {
+            public static readonly float Speed = 3f;
+            public static readonly float CollisionRadius = 10f;
+            public static readonly int MaxHP = 10;
+            public static readonly int ScoreValue = 10;
+            public static readonly float Amplitude = 80;
+            public static readonly float Frequency = 0.08f;
+        }
     }
 }
