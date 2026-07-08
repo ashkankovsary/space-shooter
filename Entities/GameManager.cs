@@ -12,8 +12,14 @@ namespace Space_Shooter_game
         public List<Enemy> enemyList;
         public List<Bullet> bulletList;
 
-        public GameManager()
+        private int Width;
+        private int Height;
+
+        public GameManager(int width, int height)
         {
+            Width = width;
+            Height = height;
+
             player = new Player(600, 800);
             enemyList = new List<Enemy>();
             bulletList = new List<Bullet>();
@@ -77,8 +83,8 @@ namespace Space_Shooter_game
         }
         public void Cleanup()
         {
-            bulletList.RemoveAll(bullet => bullet.Removed);
-            enemyList.RemoveAll(enemy => enemy.IsDead);
+            bulletList.RemoveAll(bullet => bullet.Removed || bullet.X < 0 || bullet.X > Width || bullet.Y < 0 || bullet.Y > Height);
+            enemyList.RemoveAll(enemy => enemy.IsDead || enemy.X < 0 || enemy.X > Width || enemy.Y > Height);
         }
         public void Draw(Graphics g)
         {

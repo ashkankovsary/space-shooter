@@ -7,7 +7,7 @@ namespace Space_Shooter_game
     public partial class PlayForm : ManagedForm
     {
         bool gamePaused = false;
-        GameManager gameManager = new GameManager();
+        GameManager gameManager;
         public PlayForm()
         {
             InitializeComponent();
@@ -16,6 +16,7 @@ namespace Space_Shooter_game
             this.KeyPreview = true;
             this.KeyDown += PlayForm_KeyDown;
             this.KeyUp += PlayForm_KeyUp;
+            this.Shown += PlayForm_Shown;
 
             resume_btn.Click += resume_btn_Click;
             exit_btn.Click += exit_btn_Click;
@@ -27,6 +28,10 @@ namespace Space_Shooter_game
 
         protected override void ApplyLayout() { }
 
+        private void PlayForm_Shown(object sender, EventArgs e)
+        {
+            gameManager = new GameManager(ClientSize.Width, ClientSize.Height);
+        }
         private void PlayForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
