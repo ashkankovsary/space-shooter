@@ -27,6 +27,10 @@ namespace Space_Shooter_game
         public void Update()
         {
             player.Move(player);
+            if (player.Shoot())
+            {
+                bulletList.Add(new Bullet(player.X, player.Y + player.CollisionRadius, 0, -1, 10, BulletOwner.Player, 10));
+            }
             foreach (Enemy enemy in enemyList)
             {
                 enemy.Move(player);

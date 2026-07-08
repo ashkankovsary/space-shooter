@@ -41,6 +41,7 @@ namespace Space_Shooter_game
             if (e.KeyCode == Keys.S) gameManager.player.MovingDown = true;
             if (e.KeyCode == Keys.A) gameManager.player.MovingLeft = true;
             if (e.KeyCode == Keys.D) gameManager.player.MovingRight = true;
+            if (e.KeyCode == Keys.Space) gameManager.player.Shooting = true;
         }
 
         private void PlayForm_KeyUp(object sender, KeyEventArgs e)
@@ -49,6 +50,7 @@ namespace Space_Shooter_game
             if (e.KeyCode == Keys.S) gameManager.player.MovingDown = false;
             if (e.KeyCode == Keys.A) gameManager.player.MovingLeft = false;
             if (e.KeyCode == Keys.D) gameManager.player.MovingRight = false;
+            if (e.KeyCode == Keys.Space) gameManager.player.Shooting = false;
         }
 
         private void PauseGame()
