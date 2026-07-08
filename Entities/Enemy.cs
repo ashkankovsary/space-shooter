@@ -15,6 +15,6 @@
             Y += Speed;
         }
 
-        public abstract void Shoot();
+        public abstract bool Shoot();
     }
 }

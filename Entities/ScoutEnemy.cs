@@ -17,8 +17,9 @@ namespace Space_Shooter_game
             frequency = GameSettings.ScoutEnemy.Frequency;
         }
 
-        public override void Shoot()
+        public override bool Shoot()
         {
+            return false;
         }
 
         public override void Move()

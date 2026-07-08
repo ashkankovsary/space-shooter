@@ -9,8 +9,9 @@ namespace Space_Shooter_game
         {
         }
 
-        public override void Shoot()
+        public override bool Shoot()
         {
+            return false;
         }
 
         public override void Draw(Graphics g)
