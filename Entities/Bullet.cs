@@ -14,6 +14,7 @@ namespace Space_Shooter_game
         public float DirY;
         public BulletOwner Owner;
         public int Damage;
+        public bool Removed;
 
         public Bullet(float x, float y, float dirX, float dirY, float speed, BulletOwner owner, int damage)
     : base(x, y, speed, collisionRadius: GameSettings.Bullet.CollisionRadius)
@@ -22,6 +23,7 @@ namespace Space_Shooter_game
             DirY = dirY;
             Owner = owner;
             Damage = damage;
+            Removed = false;
         }
 
         public override void Move(Player player)

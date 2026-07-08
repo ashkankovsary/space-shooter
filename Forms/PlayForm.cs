@@ -82,6 +82,7 @@ namespace Space_Shooter_game
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            if (gameManager.player.IsDead) this.Close();
             gameManager.Update();
             Invalidate();
         }

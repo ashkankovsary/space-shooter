@@ -47,6 +47,38 @@ namespace Space_Shooter_game
             {
                 bullet.Move(player);
             }
+            CheckCollision();
+            Cleanup();
+        }
+        public void CheckCollision()
+        {
+            foreach(Bullet bullet in bulletList)
+            {
+                if(bullet.Owner == BulletOwner.Enemy)
+                {
+                    if (bullet.IsCollidingWith(player))
+                    {
+                        player.TakeDamage(bullet.Damage);
+                        bullet.Removed = true;
+                    }
+                }
+                if(bullet.Owner == BulletOwner.Player)
+                {
+                    foreach (Enemy enemy in enemyList)
+                    {
+                        if (bullet.IsCollidingWith(enemy))
+                        {
+                            enemy.TakeDamage(bullet.Damage);
+                            bullet.Removed = true;
+                        }
+                    }
+                }
+            }
+        }
+        public void Cleanup()
+        {
+            bulletList.RemoveAll(bullet => bullet.Removed);
+            enemyList.RemoveAll(enemy => enemy.IsDead);
         }
         public void Draw(Graphics g)
         {
