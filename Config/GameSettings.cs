@@ -28,7 +28,7 @@
             public static readonly float CollisionRadius = 10f;
             public static readonly int MaxHP = 10;
             public static readonly int ScoreValue = 10;
-            public static readonly float Amplitude = 80;
+            public static readonly float Amplitude = 80f;
             public static readonly float Frequency = 0.08f;
         }
 
@@ -39,6 +39,16 @@
             public static readonly int MaxHP = 10;
             public static readonly int ScoreValue = 10;
             public static readonly int ShootCoolDown = 45;
+        }
+
+        public static class TerroristEnemy 
+        {
+            public static readonly float Speed = 5f;
+            public static readonly float CollisionRadius = 10f;
+            public static readonly int MaxHP = 10;
+            public static readonly int ScoreValue = 10;
+            public static readonly int UpdateInterval = 25;
+            public static readonly float ExplosionRadius = 50f;
         }
 
     }

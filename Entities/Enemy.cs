@@ -10,7 +10,7 @@
             ScoreValue = scoreValue;
         }
 
-        public override void Move()
+        public override void Move(Player player)
         {
             Y += Speed;
         }

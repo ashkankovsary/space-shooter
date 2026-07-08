@@ -21,14 +21,15 @@ namespace Space_Shooter_game
             enemyList.Add(new StandardEnemy(600, 200));
             enemyList.Add(new ScoutEnemy(900, 200));
             enemyList.Add(new ShooterEnemy(1200, 200));
+            enemyList.Add(new TerroristEnemy(1100, 200));
         }
 
         public void Update()
         {
-            player.Move();
+            player.Move(player);
             foreach (Enemy enemy in enemyList)
             {
-                enemy.Move();
+                enemy.Move(player);
                 if(enemy is ShooterEnemy shooter)
                 {
                     if (shooter.Shoot())
@@ -40,7 +41,7 @@ namespace Space_Shooter_game
             }
             foreach(Bullet bullet in bulletList)
             {
-                bullet.Move();
+                bullet.Move(player);
             }
         }
         public void Draw(Graphics g)

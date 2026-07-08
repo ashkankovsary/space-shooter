@@ -24,7 +24,7 @@ namespace Space_Shooter_game
             Damage = damage;
         }
 
-        public override void Move()
+        public override void Move(Player player)
         {
             X += DirX * Speed;
             Y += DirY * Speed;

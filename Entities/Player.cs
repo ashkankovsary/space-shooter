@@ -17,7 +17,7 @@ namespace Space_Shooter_game
         {
         }
 
-        public override void Move()
+        public override void Move(Player player)
         {
             float dx = 0, dy = 0;
             if (MovingUp) dy -= 1;

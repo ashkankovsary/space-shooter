@@ -18,7 +18,7 @@ namespace Space_Shooter_game
             CollisionRadius = collisionRadius;
         }
 
-        public abstract void Move();
+        public abstract void Move(Player player);
         public abstract void Draw(Graphics g);
 
         public virtual bool IsCollidingWith(GameEntity other)

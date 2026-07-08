@@ -22,7 +22,7 @@ namespace Space_Shooter_game
             return false;
         }
 
-        public override void Move()
+        public override void Move(Player player)
         {
             Y += Speed;
             angle += frequency;
