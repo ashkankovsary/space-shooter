@@ -17,12 +17,14 @@
 
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayForm));
             pause_panel = new OverlayPanel();
             exit_btn = new Button();
             restart_btn = new Button();
             resume_btn = new Button();
             paused_lable = new Label();
+            timer = new System.Windows.Forms.Timer(components);
             pause_panel.SuspendLayout();
             SuspendLayout();
             // 
@@ -90,6 +92,11 @@
             paused_lable.Text = "Paused";
             paused_lable.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // timer
+            // 
+            timer.Interval = 16;
+            timer.Tick += timer_Tick;
+            // 
             // PlayForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -114,5 +121,6 @@
         private Button resume_btn;
         private Button exit_btn;
         private Button restart_btn;
+        private System.Windows.Forms.Timer timer;
     }
 }
