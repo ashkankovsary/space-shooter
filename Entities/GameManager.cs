@@ -17,11 +17,21 @@ namespace Space_Shooter_game
             player = new Player(600, 800);
             enemyList = new List<Enemy>();
             bulletList = new List<Bullet>();
+
+            enemyList.Add(new StandardEnemy(600, 200));
         }
 
+        public void Update()
+        {
+            player.Move();
+            foreach (Enemy enemy in enemyList)
+                enemy.Move();
+        }
         public void Draw(Graphics g)
         {
             player.Draw(g);
+            foreach(Enemy enemy in enemyList)
+                enemy.Draw(g);
         }
     }
 }

@@ -75,12 +75,12 @@ namespace Space_Shooter_game
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            gameManager.player.Draw(e.Graphics);
+            gameManager.Draw(e.Graphics);
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            gameManager.player.Move();
+            gameManager.Update();
             Invalidate();
         }
     }
