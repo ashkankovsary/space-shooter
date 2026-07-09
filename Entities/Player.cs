@@ -32,9 +32,15 @@ namespace Space_Shooter_game
 
             if (dx != 0 || dy != 0)
             {
+                int pacw = PlayForm.ActiveForm.ClientSize.Width;
+                int pach = PlayForm.ActiveForm.ClientSize.Height;
                 float length = (float)System.Math.Sqrt(dx * dx + dy * dy);
                 X += (dx / length) * Speed;
                 Y += (dy / length) * Speed;
+                if (X < CollisionRadius) X = CollisionRadius;
+                if (Y < CollisionRadius) Y = CollisionRadius;
+                if (X > pacw - CollisionRadius) X = pacw - CollisionRadius;
+                if (Y > pach - CollisionRadius) Y = pach - CollisionRadius;
             }
         }
 

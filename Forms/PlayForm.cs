@@ -34,6 +34,7 @@ namespace Space_Shooter_game
         }
         private void PlayForm_KeyDown(object sender, KeyEventArgs e)
         {
+            float pcr = gameManager.player.CollisionRadius;
             if (e.KeyCode == Keys.Escape)
             {
                 if (!gamePaused)
