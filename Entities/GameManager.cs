@@ -58,6 +58,14 @@ namespace Space_Shooter_game
         }
         public void CheckCollision()
         {
+            foreach(Enemy enemy in enemyList)
+            {
+                if (enemy.IsCollidingWith(player))
+                {
+                    player.TakeDamage(player.CurrentHP);
+                    enemy.TakeDamage(enemy.CurrentHP);
+                }
+            }
             foreach(Bullet bullet in bulletList)
             {
                 if(bullet.Owner == BulletOwner.Enemy)
