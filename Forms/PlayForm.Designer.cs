@@ -20,11 +20,13 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayForm));
             pause_panel = new OverlayPanel();
+            bottom_panel = new Panel();
             exit_btn = new Button();
             restart_btn = new Button();
             resume_btn = new Button();
             paused_lable = new Label();
             timer = new System.Windows.Forms.Timer(components);
+            top_panel = new Panel();
             pause_panel.SuspendLayout();
             SuspendLayout();
             // 
@@ -41,6 +43,15 @@
             pause_panel.Size = new Size(800, 450);
             pause_panel.TabIndex = 0;
             pause_panel.Visible = false;
+            // 
+            // bottom_panel
+            // 
+            bottom_panel.BackColor = Color.FromArgb(40, 40, 40);
+            bottom_panel.Dock = DockStyle.Bottom;
+            bottom_panel.Location = new Point(0, 380);
+            bottom_panel.Name = "bottom_panel";
+            bottom_panel.Size = new Size(800, 70);
+            bottom_panel.TabIndex = 4;
             // 
             // exit_btn
             // 
@@ -97,6 +108,15 @@
             timer.Interval = 16;
             timer.Tick += timer_Tick;
             // 
+            // top_panel
+            // 
+            top_panel.BackColor = Color.FromArgb(40, 40, 40);
+            top_panel.Dock = DockStyle.Top;
+            top_panel.Location = new Point(0, 0);
+            top_panel.Name = "top_panel";
+            top_panel.Size = new Size(800, 70);
+            top_panel.TabIndex = 4;
+            // 
             // PlayForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -104,6 +124,8 @@
             BackColor = Color.Navy;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 450);
+            Controls.Add(bottom_panel);
+            Controls.Add(top_panel);
             Controls.Add(pause_panel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "PlayForm";
@@ -122,5 +144,7 @@
         private Button exit_btn;
         private Button restart_btn;
         private System.Windows.Forms.Timer timer;
+        private Panel top_panel;
+        private Panel bottom_panel;
     }
 }
