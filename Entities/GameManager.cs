@@ -101,6 +101,12 @@ namespace Space_Shooter_game
                 if (powerUp.IsCollidingWith(player))
                 {
                     powerUp.Removed = true;
+                    if(powerUp.Type == PowerUpType.HealthPack)
+                    {
+                        if (player.CurrentHP >= 50)
+                            player.CurrentHP = 100;
+                        else player.CurrentHP += 50;
+                    }
                 }
             }
         }
@@ -115,28 +121,28 @@ namespace Space_Shooter_game
                     float chance = (float)num / 100;
                     if(enemy is  StandardEnemy)
                     {
-                        if (chance <= GameSettings.ShooterEnemy.ShieldChance)
+                        if (chance <= GameSettings.StandardEnemy.ShieldChance)
                         {
                             powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
                                 GameSettings.PowerUp.SheildRadius, PowerUpType.Shield));
                         }
-                        else if (chance <= GameSettings.ShooterEnemy.ShieldChance +
-                            GameSettings.ShooterEnemy.TripleShotChance)
+                        else if (chance <= GameSettings.StandardEnemy.ShieldChance +
+                            GameSettings.StandardEnemy.TripleShotChance)
                         {
                             powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
                                 GameSettings.PowerUp.TripleShotRadius, PowerUpType.TripleShot));
                         }
-                        else if(chance <= GameSettings.ShooterEnemy.ShieldChance +
-                            GameSettings.ShooterEnemy.TripleShotChance + 
-                            GameSettings.ShooterEnemy.FireRateBoosterChance)
+                        else if(chance <= GameSettings.StandardEnemy.ShieldChance +
+                            GameSettings.StandardEnemy.TripleShotChance + 
+                            GameSettings.StandardEnemy.FireRateBoosterChance)
                         {
                             powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
                                 GameSettings.PowerUp.FireRateBoosterRadius, PowerUpType.FireRateBooster));
                         }
-                        else if(chance <= GameSettings.ShooterEnemy.ShieldChance +
-                            GameSettings.ShooterEnemy.TripleShotChance +
-                            GameSettings.ShooterEnemy.FireRateBoosterChance +
-                            GameSettings.ShooterEnemy.HealthPackChance)
+                        else if(chance <= GameSettings.StandardEnemy.ShieldChance +
+                            GameSettings.StandardEnemy.TripleShotChance +
+                            GameSettings.StandardEnemy.FireRateBoosterChance +
+                            GameSettings.StandardEnemy.HealthPackChance)
                         {
                             powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
                                 GameSettings.PowerUp.HealthPackRadius, PowerUpType.HealthPack));

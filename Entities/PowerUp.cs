@@ -34,7 +34,7 @@ namespace Space_Shooter_game
             if(Type == PowerUpType.Shield)
                 brush = Brushes.LimeGreen;
             if (Type == PowerUpType.HealthPack)
-                brush = Brushes.Orange;
+                brush = Brushes.Pink;
             if (Type == PowerUpType.FireRateBooster)
                 brush = Brushes.Red;
             g.FillEllipse(brush, X - CollisionRadius, Y - CollisionRadius, CollisionRadius * 2, CollisionRadius * 2);
