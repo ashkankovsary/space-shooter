@@ -11,9 +11,12 @@ namespace Space_Shooter_game
         public Player player {get;}
         public List<Enemy> enemyList;
         public List<Bullet> bulletList;
+        public List<PowerUp> powerUpList;
 
         private int Width;
         private int Height;
+
+        private Random random = new Random();
 
         public GameManager(int width, int height)
         {
@@ -23,6 +26,7 @@ namespace Space_Shooter_game
             player = new Player(600, 800);
             enemyList = new List<Enemy>();
             bulletList = new List<Bullet>();
+            powerUpList = new List<PowerUp>();
 
             enemyList.Add(new StandardEnemy(600, 200));
             enemyList.Add(new ScoutEnemy(900, 200));
@@ -52,6 +56,10 @@ namespace Space_Shooter_game
             foreach(Bullet bullet in bulletList)
             {
                 bullet.Move(player);
+            }
+            foreach (PowerUp powerUp in powerUpList)
+            {
+                powerUp.Move(player);
             }
             CheckCollision();
             Cleanup();
@@ -88,14 +96,145 @@ namespace Space_Shooter_game
                     }
                 }
             }
+            foreach(PowerUp powerUp in powerUpList)
+            {
+                if (powerUp.IsCollidingWith(player))
+                {
+                    powerUp.Removed = true;
+                }
+            }
         }
         public void Cleanup()
         {
             foreach (Enemy enemy in enemyList)
-                if (enemy.IsDead) player.Score += enemy.ScoreValue;
+            {
+                if (enemy.IsDead)
+                {
+                    player.Score += enemy.ScoreValue;
+                    int num = random.Next(1, 101);
+                    float chance = (float)num / 100;
+                    if(enemy is  StandardEnemy)
+                    {
+                        if (chance <= GameSettings.ShooterEnemy.ShieldChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.SheildRadius, PowerUpType.Shield));
+                        }
+                        else if (chance <= GameSettings.ShooterEnemy.ShieldChance +
+                            GameSettings.ShooterEnemy.TripleShotChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.TripleShotRadius, PowerUpType.TripleShot));
+                        }
+                        else if(chance <= GameSettings.ShooterEnemy.ShieldChance +
+                            GameSettings.ShooterEnemy.TripleShotChance + 
+                            GameSettings.ShooterEnemy.FireRateBoosterChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.FireRateBoosterRadius, PowerUpType.FireRateBooster));
+                        }
+                        else if(chance <= GameSettings.ShooterEnemy.ShieldChance +
+                            GameSettings.ShooterEnemy.TripleShotChance +
+                            GameSettings.ShooterEnemy.FireRateBoosterChance +
+                            GameSettings.ShooterEnemy.HealthPackChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.HealthPackRadius, PowerUpType.HealthPack));
+                        }
+                    }
+                    else if(enemy is ScoutEnemy)
+                    {
+                        if (chance <= GameSettings.ScoutEnemy.ShieldChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.SheildRadius, PowerUpType.Shield));
+                        }
+                        else if (chance <= GameSettings.ScoutEnemy.ShieldChance +
+                            GameSettings.ScoutEnemy.TripleShotChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.TripleShotRadius, PowerUpType.TripleShot));
+                        }
+                        else if (chance <= GameSettings.ScoutEnemy.ShieldChance +
+                            GameSettings.ScoutEnemy.TripleShotChance +
+                            GameSettings.ScoutEnemy.FireRateBoosterChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.FireRateBoosterRadius, PowerUpType.FireRateBooster));
+                        }
+                        else if (chance <= GameSettings.ScoutEnemy.ShieldChance +
+                            GameSettings.ScoutEnemy.TripleShotChance +
+                            GameSettings.ScoutEnemy.FireRateBoosterChance +
+                            GameSettings.ScoutEnemy.HealthPackChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.HealthPackRadius, PowerUpType.HealthPack));
+                        }
+                    }
+                    else if(enemy is ShooterEnemy)
+                    {
+                        if (chance <= GameSettings.ShooterEnemy.ShieldChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.SheildRadius, PowerUpType.Shield));
+                        }
+                        else if (chance <= GameSettings.ShooterEnemy.ShieldChance +
+                            GameSettings.ShooterEnemy.TripleShotChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.TripleShotRadius, PowerUpType.TripleShot));
+                        }
+                        else if (chance <= GameSettings.ShooterEnemy.ShieldChance +
+                            GameSettings.ShooterEnemy.TripleShotChance +
+                            GameSettings.ShooterEnemy.FireRateBoosterChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.FireRateBoosterRadius, PowerUpType.FireRateBooster));
+                        }
+                        else if (chance <= GameSettings.ShooterEnemy.ShieldChance +
+                            GameSettings.ShooterEnemy.TripleShotChance +
+                            GameSettings.ShooterEnemy.FireRateBoosterChance +
+                            GameSettings.ShooterEnemy.HealthPackChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.HealthPackRadius, PowerUpType.HealthPack));
+                        }
+                    }
+                    else if(enemy is TerroristEnemy)
+                    {
+                        if (chance <= GameSettings.TerroristEnemy.ShieldChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.SheildRadius, PowerUpType.Shield));
+                        }
+                        else if (chance <= GameSettings.TerroristEnemy.ShieldChance +
+                            GameSettings.TerroristEnemy.TripleShotChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.TripleShotRadius, PowerUpType.TripleShot));
+                        }
+                        else if (chance <= GameSettings.TerroristEnemy.ShieldChance +
+                            GameSettings.TerroristEnemy.TripleShotChance +
+                            GameSettings.TerroristEnemy.FireRateBoosterChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.FireRateBoosterRadius, PowerUpType.FireRateBooster));
+                        }
+                        else if (chance <= GameSettings.TerroristEnemy.ShieldChance +
+                            GameSettings.TerroristEnemy.TripleShotChance +
+                            GameSettings.TerroristEnemy.FireRateBoosterChance +
+                            GameSettings.TerroristEnemy.HealthPackChance)
+                        {
+                            powerUpList.Add(new PowerUp(enemy.X, enemy.Y + 2 * enemy.CollisionRadius,
+                                GameSettings.PowerUp.HealthPackRadius, PowerUpType.HealthPack));
+                        }
+                    }
+                }
+            }
 
             bulletList.RemoveAll(bullet => bullet.Removed || bullet.X < 0 || bullet.X > Width || bullet.Y < 0 || bullet.Y > Height);
             enemyList.RemoveAll(enemy => enemy.IsDead || enemy.X < 0 || enemy.X > Width || enemy.Y > Height);
+            powerUpList.RemoveAll(powerUp => powerUp.Removed || powerUp.Y > Height);
         }
         public void Draw(Graphics g)
         {
@@ -104,6 +243,8 @@ namespace Space_Shooter_game
                 enemy.Draw(g);
             foreach(Bullet bullet in bulletList)
                 bullet.Draw(g);
+            foreach(PowerUp powerUp in powerUpList)
+                powerUp.Draw(g);
         }
     }
 }
