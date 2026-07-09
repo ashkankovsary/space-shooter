@@ -28,8 +28,9 @@
             bottom_panel = new Panel();
             timer = new System.Windows.Forms.Timer(components);
             top_panel = new Panel();
-            score = new Label();
+            coin = new Label();
             hp_label = new Label();
+            score = new Label();
             pause_panel.SuspendLayout();
             top_panel.SuspendLayout();
             SuspendLayout();
@@ -124,6 +125,7 @@
             // top_panel
             // 
             top_panel.BackColor = Color.FromArgb(40, 40, 40);
+            top_panel.Controls.Add(coin);
             top_panel.Controls.Add(hp_label);
             top_panel.Controls.Add(score);
             top_panel.Controls.Add(hpbar);
@@ -132,17 +134,18 @@
             top_panel.Name = "top_panel";
             top_panel.Size = new Size(800, 70);
             top_panel.TabIndex = 4;
+            top_panel.Paint += top_panel_Paint;
             // 
-            // score
+            // coin
             // 
-            score.AutoSize = true;
-            score.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            score.ForeColor = Color.Cyan;
-            score.Location = new Point(20, 20);
-            score.Name = "score";
-            score.Size = new Size(93, 28);
-            score.TabIndex = 0;
-            score.Text = "Score : 0";
+            coin.AutoSize = true;
+            coin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            coin.ForeColor = Color.Gold;
+            coin.Location = new Point(220, 25);
+            coin.Name = "coin";
+            coin.Size = new Size(24, 28);
+            coin.TabIndex = 3;
+            coin.Text = "0";
             // 
             // hp_label
             // 
@@ -154,6 +157,17 @@
             hp_label.Size = new Size(39, 28);
             hp_label.TabIndex = 2;
             hp_label.Text = "HP";
+            // 
+            // score
+            // 
+            score.AutoSize = true;
+            score.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            score.ForeColor = Color.Cyan;
+            score.Location = new Point(20, 20);
+            score.Name = "score";
+            score.Size = new Size(93, 28);
+            score.TabIndex = 0;
+            score.Text = "Score : 0";
             // 
             // PlayForm
             // 
@@ -189,5 +203,6 @@
         private Panel bottom_panel;
         private Label score;
         private Label hp_label;
+        private Label coin;
     }
 }

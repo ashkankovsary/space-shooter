@@ -103,5 +103,13 @@ namespace Space_Shooter_game
             UpdateHUD();
             Invalidate();
         }
+
+        private void top_panel_Paint(object sender, PaintEventArgs e)
+        {
+            using (SolidBrush brush = new SolidBrush(Color.Gold))
+            {
+                e.Graphics.FillEllipse(brush, 175, 15, 40, 40);
+            }
+        }
     }
 }
