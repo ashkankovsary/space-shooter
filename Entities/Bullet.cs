@@ -34,11 +34,8 @@ namespace Space_Shooter_game
 
         public override void Draw(Graphics g)
         {
-            Color color = Owner == BulletOwner.Player ? Color.Blue : Color.OrangeRed;
-            using (SolidBrush brush = new SolidBrush(color))
-            {
-                g.FillEllipse(brush, X - CollisionRadius, Y - CollisionRadius, CollisionRadius * 2, CollisionRadius * 2);
-            }
+            Image img = Owner == BulletOwner.Player ? Properties.Resources.player_bullet : Properties.Resources.enemy_bullet;
+            g.DrawImage(img, X - img.Width / 2f, Y - img.Height / 2f, img.Width, img.Height);
         }
     }
 }

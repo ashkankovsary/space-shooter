@@ -49,10 +49,8 @@ namespace Space_Shooter_game
 
         public override void Draw(Graphics g)
         {
-            using (SolidBrush brush = new SolidBrush(Color.Cyan))
-            {
-                g.FillEllipse(brush, X - CollisionRadius, Y - CollisionRadius, CollisionRadius * 2, CollisionRadius * 2);
-            }
+            Image img = Properties.Resources.enemy_terrorist;
+            g.DrawImage(img, X - img.Width / 2f, Y - img.Height / 2f, img.Width, img.Height);
         }
     }
 }
