@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using static Space_Shooter_game.GameSettings;
 
 namespace Space_Shooter_game
 {
@@ -31,6 +32,8 @@ namespace Space_Shooter_game
         private void PlayForm_Shown(object sender, EventArgs e)
         {
             gameManager = new GameManager(ClientSize.Width, ClientSize.Height);
+            hp_label.Location = new Point(ClientSize.Width - 390, 15);
+            hpbar.Location = new Point(ClientSize.Width - 350, 20);
         }
         private void PlayForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -68,6 +71,13 @@ namespace Space_Shooter_game
             pause_panel.BringToFront();
         }
 
+        private void UpdateHUD()
+        {
+            score.Text = $"Score : {gameManager.player.Score}";
+            hpbar.MaxHP = gameManager.player.MaxHP;
+            hpbar.CurrentHP = gameManager.player.CurrentHP;
+        }
+
         private void resume_btn_Click(object sender, EventArgs e)
         {
             pause_panel.Visible = false;
@@ -90,6 +100,7 @@ namespace Space_Shooter_game
         {
             if (gameManager.player.IsDead) this.Close();
             gameManager.Update();
+            UpdateHUD();
             Invalidate();
         }
     }

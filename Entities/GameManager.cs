@@ -91,6 +91,9 @@ namespace Space_Shooter_game
         }
         public void Cleanup()
         {
+            foreach (Enemy enemy in enemyList)
+                if (enemy.IsDead) player.Score += enemy.ScoreValue;
+
             bulletList.RemoveAll(bullet => bullet.Removed || bullet.X < 0 || bullet.X > Width || bullet.Y < 0 || bullet.Y > Height);
             enemyList.RemoveAll(enemy => enemy.IsDead || enemy.X < 0 || enemy.X > Width || enemy.Y > Height);
         }

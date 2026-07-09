@@ -19,16 +19,29 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayForm));
+            hpbar = new HPbar();
             pause_panel = new OverlayPanel();
-            bottom_panel = new Panel();
             exit_btn = new Button();
             restart_btn = new Button();
             resume_btn = new Button();
             paused_lable = new Label();
+            bottom_panel = new Panel();
             timer = new System.Windows.Forms.Timer(components);
             top_panel = new Panel();
+            score = new Label();
+            hp_label = new Label();
             pause_panel.SuspendLayout();
+            top_panel.SuspendLayout();
             SuspendLayout();
+            // 
+            // hpbar
+            // 
+            hpbar.CurrentHP = 100;
+            hpbar.Location = new Point(550, 20);
+            hpbar.MaxHP = 100;
+            hpbar.Name = "hpbar";
+            hpbar.Size = new Size(250, 24);
+            hpbar.TabIndex = 1;
             // 
             // pause_panel
             // 
@@ -43,15 +56,6 @@
             pause_panel.Size = new Size(800, 450);
             pause_panel.TabIndex = 0;
             pause_panel.Visible = false;
-            // 
-            // bottom_panel
-            // 
-            bottom_panel.BackColor = Color.FromArgb(40, 40, 40);
-            bottom_panel.Dock = DockStyle.Bottom;
-            bottom_panel.Location = new Point(0, 380);
-            bottom_panel.Name = "bottom_panel";
-            bottom_panel.Size = new Size(800, 70);
-            bottom_panel.TabIndex = 4;
             // 
             // exit_btn
             // 
@@ -103,6 +107,15 @@
             paused_lable.Text = "Paused";
             paused_lable.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // bottom_panel
+            // 
+            bottom_panel.BackColor = Color.FromArgb(40, 40, 40);
+            bottom_panel.Dock = DockStyle.Bottom;
+            bottom_panel.Location = new Point(0, 380);
+            bottom_panel.Name = "bottom_panel";
+            bottom_panel.Size = new Size(800, 70);
+            bottom_panel.TabIndex = 4;
+            // 
             // timer
             // 
             timer.Interval = 16;
@@ -111,11 +124,36 @@
             // top_panel
             // 
             top_panel.BackColor = Color.FromArgb(40, 40, 40);
+            top_panel.Controls.Add(hp_label);
+            top_panel.Controls.Add(score);
+            top_panel.Controls.Add(hpbar);
             top_panel.Dock = DockStyle.Top;
             top_panel.Location = new Point(0, 0);
             top_panel.Name = "top_panel";
             top_panel.Size = new Size(800, 70);
             top_panel.TabIndex = 4;
+            // 
+            // score
+            // 
+            score.AutoSize = true;
+            score.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            score.ForeColor = Color.Cyan;
+            score.Location = new Point(20, 20);
+            score.Name = "score";
+            score.Size = new Size(93, 28);
+            score.TabIndex = 0;
+            score.Text = "Score : 0";
+            // 
+            // hp_label
+            // 
+            hp_label.AutoSize = true;
+            hp_label.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            hp_label.ForeColor = Color.White;
+            hp_label.Location = new Point(510, 15);
+            hp_label.Name = "hp_label";
+            hp_label.Size = new Size(39, 28);
+            hp_label.TabIndex = 2;
+            hp_label.Text = "HP";
             // 
             // PlayForm
             // 
@@ -133,11 +171,14 @@
             WindowState = FormWindowState.Maximized;
             pause_panel.ResumeLayout(false);
             pause_panel.PerformLayout();
+            top_panel.ResumeLayout(false);
+            top_panel.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
+        private HPbar hpbar;
         private OverlayPanel pause_panel;
         private Label paused_lable;
         private Button resume_btn;
@@ -146,5 +187,7 @@
         private System.Windows.Forms.Timer timer;
         private Panel top_panel;
         private Panel bottom_panel;
+        private Label score;
+        private Label hp_label;
     }
 }
