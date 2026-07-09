@@ -35,7 +35,7 @@ namespace Space_Shooter_game
             player.Move(player);
             if (player.Shoot())
             {
-                bulletList.Add(new Bullet(player.X, player.Y + player.CollisionRadius, 0, -1, 10, BulletOwner.Player, 10));
+                bulletList.Add(new Bullet(player.X, player.Y - player.CollisionRadius, 0, -1, BulletOwner.Player, GameSettings.Player.bulletDamage));
             }
             foreach (Enemy enemy in enemyList)
             {
@@ -44,7 +44,7 @@ namespace Space_Shooter_game
                 {
                     if (shooter.Shoot())
                     {
-                        bulletList.Add(new Bullet(enemy.X, enemy.Y + enemy.CollisionRadius, 0, 1, 5, BulletOwner.Enemy, 20));
+                        bulletList.Add(new Bullet(enemy.X, enemy.Y + enemy.CollisionRadius, 0, 1, BulletOwner.Enemy, GameSettings.ShooterEnemy.bulletDamage));
                         shooter.ResetShootTimer();
                     }
                 }
