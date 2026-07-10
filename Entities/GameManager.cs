@@ -32,6 +32,16 @@ namespace Space_Shooter_game
             enemyList.Add(new ScoutEnemy(900, 200));
             enemyList.Add(new ShooterEnemy(1200, 200));
             enemyList.Add(new TerroristEnemy(1100, 200));
+
+            enemyList.Add(new StandardEnemy(1200, 100));
+            enemyList.Add(new ScoutEnemy(900, 100));
+            enemyList.Add(new ShooterEnemy(600, 100));
+            enemyList.Add(new TerroristEnemy(1100, 100));
+
+            enemyList.Add(new StandardEnemy(300, 100));
+            enemyList.Add(new ScoutEnemy(400, 100));
+            enemyList.Add(new ShooterEnemy(200, 100));
+            enemyList.Add(new TerroristEnemy(500, 100));
         }
 
         public void Update()

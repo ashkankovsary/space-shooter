@@ -26,17 +26,21 @@
             resume_btn = new Button();
             paused_lable = new Label();
             bottom_panel = new Panel();
+            powerup3 = new HPbar();
+            powerup2 = new HPbar();
+            powerup1 = new HPbar();
             timer = new System.Windows.Forms.Timer(components);
             top_panel = new Panel();
+            pictureBox2 = new PictureBox();
             pic_coin = new PictureBox();
             coin = new Label();
             hp_label = new Label();
             score = new Label();
-            pictureBox2 = new PictureBox();
             pause_panel.SuspendLayout();
+            bottom_panel.SuspendLayout();
             top_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pic_coin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pic_coin).BeginInit();
             SuspendLayout();
             // 
             // hpbar
@@ -117,11 +121,46 @@
             // bottom_panel
             // 
             bottom_panel.BackColor = Color.FromArgb(40, 40, 40);
+            bottom_panel.Controls.Add(powerup3);
+            bottom_panel.Controls.Add(powerup2);
+            bottom_panel.Controls.Add(powerup1);
             bottom_panel.Dock = DockStyle.Bottom;
             bottom_panel.Location = new Point(0, 538);
             bottom_panel.Name = "bottom_panel";
             bottom_panel.Size = new Size(1221, 70);
             bottom_panel.TabIndex = 4;
+            // 
+            // powerup3
+            // 
+            powerup3.CurrentHP = 100;
+            powerup3.Location = new Point(710, 20);
+            powerup3.MaxHP = 100;
+            powerup3.Name = "powerup3";
+            powerup3.Size = new Size(150, 25);
+            powerup3.TabIndex = 2;
+            powerup3.Text = "hPbar2";
+            powerup3.Visible = false;
+            // 
+            // powerup2
+            // 
+            powerup2.CurrentHP = 100;
+            powerup2.Location = new Point(410, 20);
+            powerup2.MaxHP = 100;
+            powerup2.Name = "powerup2";
+            powerup2.Size = new Size(150, 25);
+            powerup2.TabIndex = 1;
+            powerup2.Text = "hPbar1";
+            powerup2.Visible = false;
+            // 
+            // powerup1
+            // 
+            powerup1.CurrentHP = 100;
+            powerup1.Location = new Point(110, 20);
+            powerup1.MaxHP = 100;
+            powerup1.Name = "powerup1";
+            powerup1.Size = new Size(150, 25);
+            powerup1.TabIndex = 0;
+            powerup1.Text = "hPbar1";
             // 
             // timer
             // 
@@ -142,6 +181,15 @@
             top_panel.Name = "top_panel";
             top_panel.Size = new Size(1221, 70);
             top_panel.TabIndex = 4;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.ex;
+            pictureBox2.Location = new Point(22, 17);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(36, 36);
+            pictureBox2.TabIndex = 6;
+            pictureBox2.TabStop = false;
             // 
             // pic_coin
             // 
@@ -186,15 +234,6 @@
             score.TabIndex = 0;
             score.Text = "0";
             // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = Properties.Resources.ex;
-            pictureBox2.Location = new Point(22, 17);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(36, 36);
-            pictureBox2.TabIndex = 6;
-            pictureBox2.TabStop = false;
-            // 
             // PlayForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -211,10 +250,11 @@
             WindowState = FormWindowState.Maximized;
             pause_panel.ResumeLayout(false);
             pause_panel.PerformLayout();
+            bottom_panel.ResumeLayout(false);
             top_panel.ResumeLayout(false);
             top_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pic_coin).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pic_coin).EndInit();
             ResumeLayout(false);
         }
 
@@ -234,5 +274,8 @@
         private Label coin;
         private PictureBox pic_coin;
         private PictureBox pictureBox2;
+        private HPbar powerup1;
+        private HPbar powerup2;
+        private HPbar powerup3;
     }
 }

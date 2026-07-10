@@ -76,6 +76,102 @@ namespace Space_Shooter_game
             score.Text = $"{gameManager.player.Score}";
             hpbar.MaxHP = gameManager.player.MaxHP;
             hpbar.CurrentHP = gameManager.player.CurrentHP;
+
+            int count = 0;
+            /*powerup1.MaxHP = 300;
+            powerup1.CurrentHP = gameManager.player.TripleShotTimer;
+            if(powerup1.CurrentHP == 0) powerup1.Visible = false;
+            if (!powerup1.Visible && gameManager.player.TripleShotTimer > 0)
+                powerup1.Visible = true;*/
+
+            foreach(PowerUpType put in gameManager.player.ActivePowerUps)
+            {
+                if(put is PowerUpType.Shield)
+                {
+                    if(count == 0)
+                    {
+                        powerup1.MaxHP = 150;
+                        powerup1.CurrentHP = gameManager.player.ShieldTimer;
+                    }
+                    else if(count == 1)
+                    {
+                        powerup2.MaxHP = 150;
+                        powerup2.CurrentHP = gameManager.player.ShieldTimer;
+                    }
+                    else if(count == 2)
+                    {
+                        powerup3.MaxHP = 150;
+                        powerup3.CurrentHP = gameManager.player.ShieldTimer;
+                    }
+                }
+                else if(put is PowerUpType.TripleShot)
+                {
+                    if (count == 0)
+                    {
+                        powerup1.MaxHP = 300;
+                        powerup1.CurrentHP = gameManager.player.TripleShotTimer;
+                    }
+                    else if (count == 1)
+                    {
+                        powerup2.MaxHP = 300;
+                        powerup2.CurrentHP = gameManager.player.TripleShotTimer;
+                    }
+                    else if (count == 2)
+                    {
+                        powerup3.MaxHP = 300;
+                        powerup3.CurrentHP = gameManager.player.TripleShotTimer;
+                    }
+                }
+                else if(put is PowerUpType.FireRateBooster)
+                {
+                    if (count == 0)
+                    {
+                        powerup1.MaxHP = 300;
+                        powerup1.CurrentHP = gameManager.player.FireRateBoosterTimer;
+                    }
+                    else if (count == 1)
+                    {
+                        powerup2.MaxHP = 300;
+                        powerup2.CurrentHP = gameManager.player.FireRateBoosterTimer;
+                    }
+                    else if (count == 2)
+                    {
+                        powerup3.MaxHP = 300;
+                        powerup3.CurrentHP = gameManager.player.FireRateBoosterTimer;
+                    }
+                }
+                count++;
+            }
+            if(count == 0)
+            {
+                powerup1.Visible = false;
+                powerup2.Visible = false;
+                powerup3.Visible = false;
+            }
+            else if (count == 1)
+            {
+                if(!powerup1.Visible)
+                    powerup1.Visible = true;
+                powerup2.Visible = false;
+                powerup3.Visible = false;
+            }
+            else if (count == 2)
+            {
+                if(!powerup1.Visible)
+                    powerup1.Visible = true;
+                if (!powerup2.Visible)
+                    powerup2.Visible = true;
+                powerup3.Visible = false;
+            }
+            else if (count == 3)
+            {
+                if (!powerup1.Visible)
+                    powerup1.Visible = true;
+                if (!powerup2.Visible)
+                    powerup2.Visible = true;
+                if(!powerup3.Visible)
+                    powerup3.Visible = true;
+            }
         }
 
         private void resume_btn_Click(object sender, EventArgs e)
