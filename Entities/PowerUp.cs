@@ -28,16 +28,17 @@ namespace Space_Shooter_game
 
         public override void Draw(Graphics g)
         {
-            Brush brush = Brushes.White;
-            if (Type == PowerUpType.TripleShot)
-                brush = Brushes.DeepSkyBlue;
-            if(Type == PowerUpType.Shield)
-                brush = Brushes.LimeGreen;
-            if (Type == PowerUpType.HealthPack)
-                brush = Brushes.Pink;
-            if (Type == PowerUpType.FireRateBooster)
-                brush = Brushes.Red;
-            g.FillEllipse(brush, X - CollisionRadius, Y - CollisionRadius, CollisionRadius * 2, CollisionRadius * 2);
+            Image img = Type switch
+            {
+                PowerUpType.TripleShot => Properties.Resources.triple_shoot,
+                PowerUpType.Shield => Properties.Resources.shield,
+                PowerUpType.HealthPack => Properties.Resources.health_pack,
+                PowerUpType.FireRateBooster => Properties.Resources.fire_rate,
+                _ => null
+            };
+
+            if (img != null)
+                g.DrawImage(img, X - img.Width / 2f, Y - img.Height / 2f, img.Width, img.Height);
         }
     }
 }
