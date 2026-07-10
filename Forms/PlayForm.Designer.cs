@@ -66,6 +66,7 @@
             // 
             exit_btn.Anchor = AnchorStyles.None;
             exit_btn.BackColor = Color.DeepPink;
+            exit_btn.Cursor = Cursors.Hand;
             exit_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             exit_btn.Location = new Point(550, 369);
             exit_btn.Name = "exit_btn";
@@ -78,6 +79,7 @@
             // 
             restart_btn.Anchor = AnchorStyles.None;
             restart_btn.BackColor = Color.DeepPink;
+            restart_btn.Cursor = Cursors.Hand;
             restart_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             restart_btn.Location = new Point(550, 269);
             restart_btn.Name = "restart_btn";
