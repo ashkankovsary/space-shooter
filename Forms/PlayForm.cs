@@ -73,7 +73,7 @@ namespace Space_Shooter_game
 
         private void UpdateHUD()
         {
-            score.Text = $"Score : {gameManager.player.Score}";
+            score.Text = $"{gameManager.player.Score}";
             hpbar.MaxHP = gameManager.player.MaxHP;
             hpbar.CurrentHP = gameManager.player.CurrentHP;
         }
@@ -102,14 +102,6 @@ namespace Space_Shooter_game
             gameManager.Update();
             UpdateHUD();
             Invalidate();
-        }
-
-        private void top_panel_Paint(object sender, PaintEventArgs e)
-        {
-            using (SolidBrush brush = new SolidBrush(Color.Gold))
-            {
-                e.Graphics.FillEllipse(brush, 175, 15, 40, 40);
-            }
         }
     }
 }

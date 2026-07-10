@@ -32,7 +32,7 @@ namespace Space_Shooter_game
             {
                 PowerUpType.TripleShot => Properties.Resources.triple_shoot,
                 PowerUpType.Shield => Properties.Resources.shield,
-                PowerUpType.HealthPack => Properties.Resources.health_pack,
+                PowerUpType.HealthPack => Properties.Resources.health_pack, 
                 PowerUpType.FireRateBooster => Properties.Resources.fire_rate,
                 _ => null
             };

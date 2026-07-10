@@ -28,11 +28,15 @@
             bottom_panel = new Panel();
             timer = new System.Windows.Forms.Timer(components);
             top_panel = new Panel();
+            pic_coin = new PictureBox();
             coin = new Label();
             hp_label = new Label();
             score = new Label();
+            pictureBox2 = new PictureBox();
             pause_panel.SuspendLayout();
             top_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pic_coin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // hpbar
@@ -54,7 +58,7 @@
             pause_panel.Dock = DockStyle.Fill;
             pause_panel.Location = new Point(0, 0);
             pause_panel.Name = "pause_panel";
-            pause_panel.Size = new Size(800, 450);
+            pause_panel.Size = new Size(1221, 608);
             pause_panel.TabIndex = 0;
             pause_panel.Visible = false;
             // 
@@ -63,7 +67,7 @@
             exit_btn.Anchor = AnchorStyles.None;
             exit_btn.BackColor = Color.DeepPink;
             exit_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            exit_btn.Location = new Point(340, 290);
+            exit_btn.Location = new Point(550, 369);
             exit_btn.Name = "exit_btn";
             exit_btn.Size = new Size(150, 60);
             exit_btn.TabIndex = 3;
@@ -75,7 +79,7 @@
             restart_btn.Anchor = AnchorStyles.None;
             restart_btn.BackColor = Color.DeepPink;
             restart_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            restart_btn.Location = new Point(340, 190);
+            restart_btn.Location = new Point(550, 269);
             restart_btn.Name = "restart_btn";
             restart_btn.Size = new Size(150, 60);
             restart_btn.TabIndex = 2;
@@ -88,7 +92,7 @@
             resume_btn.BackColor = Color.DeepPink;
             resume_btn.Cursor = Cursors.Hand;
             resume_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            resume_btn.Location = new Point(340, 90);
+            resume_btn.Location = new Point(550, 169);
             resume_btn.Name = "resume_btn";
             resume_btn.Size = new Size(150, 60);
             resume_btn.TabIndex = 1;
@@ -101,7 +105,7 @@
             paused_lable.AutoSize = true;
             paused_lable.Font = new Font("Segoe UI", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             paused_lable.ForeColor = Color.Violet;
-            paused_lable.Location = new Point(345, 9);
+            paused_lable.Location = new Point(555, 88);
             paused_lable.Name = "paused_lable";
             paused_lable.Size = new Size(139, 50);
             paused_lable.TabIndex = 0;
@@ -112,9 +116,9 @@
             // 
             bottom_panel.BackColor = Color.FromArgb(40, 40, 40);
             bottom_panel.Dock = DockStyle.Bottom;
-            bottom_panel.Location = new Point(0, 380);
+            bottom_panel.Location = new Point(0, 538);
             bottom_panel.Name = "bottom_panel";
-            bottom_panel.Size = new Size(800, 70);
+            bottom_panel.Size = new Size(1221, 70);
             bottom_panel.TabIndex = 4;
             // 
             // timer
@@ -125,6 +129,8 @@
             // top_panel
             // 
             top_panel.BackColor = Color.FromArgb(40, 40, 40);
+            top_panel.Controls.Add(pictureBox2);
+            top_panel.Controls.Add(pic_coin);
             top_panel.Controls.Add(coin);
             top_panel.Controls.Add(hp_label);
             top_panel.Controls.Add(score);
@@ -132,16 +138,25 @@
             top_panel.Dock = DockStyle.Top;
             top_panel.Location = new Point(0, 0);
             top_panel.Name = "top_panel";
-            top_panel.Size = new Size(800, 70);
+            top_panel.Size = new Size(1221, 70);
             top_panel.TabIndex = 4;
-            top_panel.Paint += top_panel_Paint;
+            // 
+            // pic_coin
+            // 
+            pic_coin.Image = Properties.Resources.coin;
+            pic_coin.InitialImage = Properties.Resources.coin;
+            pic_coin.Location = new Point(162, 17);
+            pic_coin.Name = "pic_coin";
+            pic_coin.Size = new Size(36, 36);
+            pic_coin.TabIndex = 4;
+            pic_coin.TabStop = false;
             // 
             // coin
             // 
             coin.AutoSize = true;
             coin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             coin.ForeColor = Color.Gold;
-            coin.Location = new Point(220, 25);
+            coin.Location = new Point(204, 21);
             coin.Name = "coin";
             coin.Size = new Size(24, 28);
             coin.TabIndex = 3;
@@ -163,11 +178,20 @@
             score.AutoSize = true;
             score.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             score.ForeColor = Color.Cyan;
-            score.Location = new Point(20, 20);
+            score.Location = new Point(64, 21);
             score.Name = "score";
-            score.Size = new Size(93, 28);
+            score.Size = new Size(24, 28);
             score.TabIndex = 0;
-            score.Text = "Score : 0";
+            score.Text = "0";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.ex;
+            pictureBox2.Location = new Point(22, 17);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(36, 36);
+            pictureBox2.TabIndex = 6;
+            pictureBox2.TabStop = false;
             // 
             // PlayForm
             // 
@@ -175,7 +199,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Navy;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1221, 608);
             Controls.Add(bottom_panel);
             Controls.Add(top_panel);
             Controls.Add(pause_panel);
@@ -187,6 +211,8 @@
             pause_panel.PerformLayout();
             top_panel.ResumeLayout(false);
             top_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pic_coin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -204,5 +230,7 @@
         private Label score;
         private Label hp_label;
         private Label coin;
+        private PictureBox pic_coin;
+        private PictureBox pictureBox2;
     }
 }
