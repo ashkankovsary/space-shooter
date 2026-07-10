@@ -37,9 +37,20 @@ namespace Space_Shooter_game
         public void Update()
         {
             player.Move(player);
+            player.CheckTripleShot();
+            player.CheckFireRateBooster();
+            player.CheckShield();
+
             if (player.Shoot())
             {
+                if (player.FireRateBoosterTimer > 0)
+                    player.shootCooldown = GameSettings.Player.ShootCooldown / 2;
                 bulletList.Add(new Bullet(player.X, player.Y - player.CollisionRadius, 0, -1, BulletOwner.Player, GameSettings.Player.bulletDamage));
+                if(player.TripleShotTimer > 0)
+                {
+                    bulletList.Add(new Bullet(player.X, player.Y - player.CollisionRadius, -0.6f, -0.8f, BulletOwner.Player, GameSettings.Player.bulletDamage));
+                    bulletList.Add(new Bullet(player.X, player.Y - player.CollisionRadius, 0.6f, -0.8f, BulletOwner.Player, GameSettings.Player.bulletDamage));
+                }
             }
             foreach (Enemy enemy in enemyList)
             {
@@ -70,7 +81,9 @@ namespace Space_Shooter_game
             {
                 if (enemy.IsCollidingWith(player))
                 {
-                    player.TakeDamage(player.CurrentHP);
+                    if (player.ShieldTimer > 0)
+                        player.ShieldTimer = 0;
+                    else player.TakeDamage(player.CurrentHP);
                     enemy.TakeDamage(enemy.CurrentHP);
                 }
             }
@@ -80,7 +93,8 @@ namespace Space_Shooter_game
                 {
                     if (bullet.IsCollidingWith(player))
                     {
-                        player.TakeDamage(bullet.Damage);
+                        if(player.ShieldTimer == 0)
+                            player.TakeDamage(bullet.Damage);
                         bullet.Removed = true;
                     }
                 }
@@ -106,6 +120,24 @@ namespace Space_Shooter_game
                         if (player.CurrentHP >= 50)
                             player.CurrentHP = 100;
                         else player.CurrentHP += 50;
+                    }
+                    else if(powerUp.Type == PowerUpType.TripleShot)
+                    {
+                        if(player.TripleShotTimer == 0)
+                            player.ActivePowerUps.Add(PowerUpType.TripleShot);
+                        player.TripleShotTimer = 300;
+                    }
+                    else if(powerUp.Type == PowerUpType.FireRateBooster)
+                    {
+                        if (player.FireRateBoosterTimer == 0)
+                            player.ActivePowerUps.Add(PowerUpType.FireRateBooster);
+                        player.FireRateBoosterTimer = 300;
+                    }
+                    else if(powerUp.Type == PowerUpType.Shield)
+                    {
+                        if (player.ShieldTimer == 0)
+                            player.ActivePowerUps.Add(PowerUpType.Shield);
+                        player.ShieldTimer = 150;
                     }
                 }
             }
@@ -237,6 +269,9 @@ namespace Space_Shooter_game
                     }
                 }
             }
+            player.ActivePowerUps.RemoveAll(p => p == PowerUpType.TripleShot && player.TripleShotTimer == 0);
+            player.ActivePowerUps.RemoveAll(p => p == PowerUpType.FireRateBooster && player.FireRateBoosterTimer == 0);
+            player.ActivePowerUps.RemoveAll(p => p == PowerUpType.Shield && player.ShieldTimer == 0);
 
             bulletList.RemoveAll(bullet => bullet.Removed || bullet.X < 0 || bullet.X > Width || bullet.Y < 0 || bullet.Y > Height);
             enemyList.RemoveAll(enemy => enemy.IsDead || enemy.X < 0 || enemy.X > Width || enemy.Y > Height);

@@ -6,8 +6,11 @@ namespace Space_Shooter_game
     {
         public int Score;
         public int Coins;
-        private int shootCooldown;
+        public int shootCooldown;
         private int shootTimer;
+        public int TripleShotTimer;
+        public int FireRateBoosterTimer;
+        public int ShieldTimer;
 
         public bool MovingUp;
         public bool MovingDown;
@@ -15,11 +18,17 @@ namespace Space_Shooter_game
         public bool MovingRight;
         public bool Shooting;
 
+        public List<PowerUpType> ActivePowerUps;
+
         public Player(float x, float y) : base(x, y, speed: GameSettings.Player.Speed, 
         collisionRadius: GameSettings.Player.CollisionRadius, maxHP: GameSettings.Player.MaxHP)
         {
             shootTimer = 0;
+            TripleShotTimer = 0;
+            FireRateBoosterTimer = 0;
+            ShieldTimer = 0;
             shootCooldown = GameSettings.Player.ShootCooldown;
+            ActivePowerUps = new List<PowerUpType>();
         }
 
         public override void Move(Player player)
@@ -60,6 +69,28 @@ namespace Space_Shooter_game
             }
             shootTimer = 0;
             return false;
+        }
+
+        public void CheckTripleShot()
+        {
+            if (TripleShotTimer == 0) return;
+            TripleShotTimer--;
+        }
+
+        public void CheckFireRateBooster()
+        {
+            if (FireRateBoosterTimer == 0)
+            {
+                shootCooldown = GameSettings.Player.ShootCooldown;
+                return;
+            }
+            FireRateBoosterTimer--; 
+        }
+
+        public void CheckShield()
+        {
+            if (ShieldTimer == 0) return;
+            ShieldTimer--;
         }
 
         public override void Draw(Graphics g)
