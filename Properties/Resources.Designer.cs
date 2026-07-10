@@ -63,6 +63,26 @@ namespace Space_Shooter_game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap boss_explosion {
+            get {
+                object obj = ResourceManager.GetObject("boss_explosion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap coin {
+            get {
+                object obj = ResourceManager.GetObject("coin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap enemy_bullet {
             get {
                 object obj = ResourceManager.GetObject("enemy_bullet", resourceCulture);
@@ -76,6 +96,16 @@ namespace Space_Shooter_game.Properties {
         internal static System.Drawing.Bitmap enemy_scout {
             get {
                 object obj = ResourceManager.GetObject("enemy_scout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap enemy_ship_explosion {
+            get {
+                object obj = ResourceManager.GetObject("enemy_ship_explosion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +143,69 @@ namespace Space_Shooter_game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ex {
+            get {
+                object obj = ResourceManager.GetObject("ex", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fire_rate {
+            get {
+                object obj = ResourceManager.GetObject("fire_rate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap health_pack {
+            get {
+                object obj = ResourceManager.GetObject("health_pack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap heavy_tank_boss {
             get {
                 object obj = ResourceManager.GetObject("heavy_tank_boss", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heavy_tank_boss2 {
+            get {
+                object obj = ResourceManager.GetObject("heavy_tank_boss2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heavy_tank_boss3 {
+            get {
+                object obj = ResourceManager.GetObject("heavy_tank_boss3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heavy_tank_boss4 {
+            get {
+                object obj = ResourceManager.GetObject("heavy_tank_boss4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,6 +226,36 @@ namespace Space_Shooter_game.Properties {
         internal static System.Drawing.Bitmap player_ship {
             get {
                 object obj = ResourceManager.GetObject("player_ship", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_ship_explosion {
+            get {
+                object obj = ResourceManager.GetObject("player_ship_explosion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shield {
+            get {
+                object obj = ResourceManager.GetObject("shield", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap triple_shoot {
+            get {
+                object obj = ResourceManager.GetObject("triple_shoot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
