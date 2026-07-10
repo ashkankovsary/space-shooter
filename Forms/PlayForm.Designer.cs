@@ -27,19 +27,25 @@
             paused_lable = new Label();
             bottom_panel = new Panel();
             powerup3 = new HPbar();
-            powerup2 = new HPbar();
             powerup1 = new HPbar();
+            powerup3_icon = new PictureBox();
+            powerup2 = new HPbar();
+            powerup2_icon = new PictureBox();
+            powerup1_icon = new PictureBox();
             timer = new System.Windows.Forms.Timer(components);
             top_panel = new Panel();
-            pictureBox2 = new PictureBox();
+            EX_icon = new PictureBox();
             pic_coin = new PictureBox();
             coin = new Label();
             hp_label = new Label();
             score = new Label();
             pause_panel.SuspendLayout();
             bottom_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)powerup3_icon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)powerup2_icon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)powerup1_icon).BeginInit();
             top_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)EX_icon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pic_coin).BeginInit();
             SuspendLayout();
             // 
@@ -122,45 +128,83 @@
             // 
             bottom_panel.BackColor = Color.FromArgb(40, 40, 40);
             bottom_panel.Controls.Add(powerup3);
-            bottom_panel.Controls.Add(powerup2);
             bottom_panel.Controls.Add(powerup1);
+            bottom_panel.Controls.Add(powerup3_icon);
+            bottom_panel.Controls.Add(powerup2);
+            bottom_panel.Controls.Add(powerup2_icon);
+            bottom_panel.Controls.Add(powerup1_icon);
             bottom_panel.Dock = DockStyle.Bottom;
             bottom_panel.Location = new Point(0, 538);
             bottom_panel.Name = "bottom_panel";
             bottom_panel.Size = new Size(1221, 70);
             bottom_panel.TabIndex = 4;
+            //
+            //
+            //
+            int eachPowerUp = 400;
+            int space = 100;
             // 
             // powerup3
             // 
+            powerup3.TabIndex = 2;
             powerup3.CurrentHP = 100;
-            powerup3.Location = new Point(710, 20);
+            powerup3.Location = new Point(powerup3.TabIndex * (eachPowerUp + space) + space + 45, 18);
             powerup3.MaxHP = 100;
             powerup3.Name = "powerup3";
-            powerup3.Size = new Size(150, 25);
-            powerup3.TabIndex = 2;
+            powerup3.Size = new Size(eachPowerUp - 66, 36);
             powerup3.Text = "hPbar2";
             powerup3.Visible = false;
             // 
             // powerup2
             // 
+            powerup2.TabIndex = 1;
             powerup2.CurrentHP = 100;
-            powerup2.Location = new Point(410, 20);
+            powerup2.Location = new Point(powerup2.TabIndex * (eachPowerUp + space) + space + 45, 18);
             powerup2.MaxHP = 100;
             powerup2.Name = "powerup2";
-            powerup2.Size = new Size(150, 25);
-            powerup2.TabIndex = 1;
+            powerup2.Size = new Size(eachPowerUp - 66, 36);
             powerup2.Text = "hPbar1";
             powerup2.Visible = false;
             // 
             // powerup1
             // 
+            powerup1.TabIndex = 0;
             powerup1.CurrentHP = 100;
-            powerup1.Location = new Point(110, 20);
+            powerup1.Location = new Point(powerup1.TabIndex * (eachPowerUp + space) + space + 45, 18);
             powerup1.MaxHP = 100;
             powerup1.Name = "powerup1";
-            powerup1.Size = new Size(150, 25);
-            powerup1.TabIndex = 0;
+            powerup1.Size = new Size(eachPowerUp - 66, 36);
             powerup1.Text = "hPbar1";
+            // 
+            // powerup3_icon
+            // 
+            powerup3_icon.Location = new Point(powerup3.TabIndex * (eachPowerUp + space) + space, 18);
+            powerup3_icon.Name = "powerup3_icon";
+            powerup3_icon.Size = new Size(36, 36);
+            powerup3_icon.SizeMode = PictureBoxSizeMode.Zoom;
+            powerup3_icon.TabIndex = 3;
+            powerup3_icon.TabStop = false;
+            powerup3_icon.Visible = false;
+            // 
+            // powerup2_icon
+            // 
+            powerup2_icon.Location = new Point(powerup2.TabIndex * (eachPowerUp + space) + space, 18);
+            powerup2_icon.Name = "powerup2_icon";
+            powerup2_icon.Size = new Size(36, 36);
+            powerup2_icon.SizeMode = PictureBoxSizeMode.Zoom;
+            powerup2_icon.TabIndex = 4;
+            powerup2_icon.TabStop = false;
+            powerup2_icon.Visible = false;
+            // 
+            // powerup1_icon
+            // 
+            powerup1_icon.Location = new Point(powerup1.TabIndex * (eachPowerUp + space) + space, 18);
+            powerup1_icon.Name = "powerup1_icon";
+            powerup1_icon.Size = new Size(36, 36);
+            powerup1_icon.SizeMode = PictureBoxSizeMode.Zoom;
+            powerup1_icon.TabIndex = 5;
+            powerup1_icon.TabStop = false;
+            powerup1_icon.Visible = false;
             // 
             // timer
             // 
@@ -170,7 +214,7 @@
             // top_panel
             // 
             top_panel.BackColor = Color.FromArgb(40, 40, 40);
-            top_panel.Controls.Add(pictureBox2);
+            top_panel.Controls.Add(EX_icon);
             top_panel.Controls.Add(pic_coin);
             top_panel.Controls.Add(coin);
             top_panel.Controls.Add(hp_label);
@@ -182,14 +226,14 @@
             top_panel.Size = new Size(1221, 70);
             top_panel.TabIndex = 4;
             // 
-            // pictureBox2
+            // EX_icon
             // 
-            pictureBox2.Image = Properties.Resources.ex;
-            pictureBox2.Location = new Point(22, 17);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(36, 36);
-            pictureBox2.TabIndex = 6;
-            pictureBox2.TabStop = false;
+            EX_icon.Image = Properties.Resources.ex;
+            EX_icon.Location = new Point(22, 17);
+            EX_icon.Name = "EX_icon";
+            EX_icon.Size = new Size(36, 36);
+            EX_icon.TabIndex = 6;
+            EX_icon.TabStop = false;
             // 
             // pic_coin
             // 
@@ -251,9 +295,12 @@
             pause_panel.ResumeLayout(false);
             pause_panel.PerformLayout();
             bottom_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)powerup3_icon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)powerup2_icon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)powerup1_icon).EndInit();
             top_panel.ResumeLayout(false);
             top_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)EX_icon).EndInit();
             ((System.ComponentModel.ISupportInitialize)pic_coin).EndInit();
             ResumeLayout(false);
         }
@@ -273,9 +320,12 @@
         private Label hp_label;
         private Label coin;
         private PictureBox pic_coin;
-        private PictureBox pictureBox2;
+        private PictureBox EX_icon;
         private HPbar powerup1;
         private HPbar powerup2;
         private HPbar powerup3;
+        private PictureBox powerup1_icon;
+        private PictureBox powerup2_icon;
+        private PictureBox powerup3_icon;
     }
 }

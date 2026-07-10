@@ -97,6 +97,12 @@ namespace Space_Shooter_game
         {
             Image img = Properties.Resources.player_ship;
             g.DrawImage(img, X - img.Width / 2f, Y - img.Height / 2f, img.Width, img.Height);
+
+            if (ShieldTimer > 0)
+            {
+                Image shieldImg = Properties.Resources.player_shield;
+                g.DrawImage(shieldImg, X - shieldImg.Width / 2f, Y - shieldImg.Height / 2f, shieldImg.Width, shieldImg.Height);
+            }
         }
     }
 }

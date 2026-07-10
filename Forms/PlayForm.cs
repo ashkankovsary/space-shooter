@@ -83,94 +83,36 @@ namespace Space_Shooter_game
 
             int count = 0;
 
-            foreach(PowerUpType put in gameManager.player.ActivePowerUps)
+            foreach (PowerUpType put in gameManager.player.ActivePowerUps)
             {
-                if(put is PowerUpType.Shield)
+                HPbar bar = count == 0 ? powerup1 : count == 1 ? powerup2 : count == 2 ? powerup3 : null;
+                PictureBox icon = count == 0 ? powerup1_icon : count == 1 ? powerup2_icon : count == 2 ? powerup3_icon : null;
+                if (bar == null) break;
+
+                if (put == PowerUpType.Shield)
                 {
-                    if(count == 0)
-                    {
-                        powerup1.MaxHP = 150;
-                        powerup1.CurrentHP = gameManager.player.ShieldTimer;
-                    }
-                    else if(count == 1)
-                    {
-                        powerup2.MaxHP = 150;
-                        powerup2.CurrentHP = gameManager.player.ShieldTimer;
-                    }
-                    else if(count == 2)
-                    {
-                        powerup3.MaxHP = 150;
-                        powerup3.CurrentHP = gameManager.player.ShieldTimer;
-                    }
+                    bar.MaxHP = 150;
+                    bar.CurrentHP = gameManager.player.ShieldTimer;
+                    icon.Image = Properties.Resources.shield;
                 }
-                else if(put is PowerUpType.TripleShot)
+                else if (put == PowerUpType.TripleShot)
                 {
-                    if (count == 0)
-                    {
-                        powerup1.MaxHP = 300;
-                        powerup1.CurrentHP = gameManager.player.TripleShotTimer;
-                    }
-                    else if (count == 1)
-                    {
-                        powerup2.MaxHP = 300;
-                        powerup2.CurrentHP = gameManager.player.TripleShotTimer;
-                    }
-                    else if (count == 2)
-                    {
-                        powerup3.MaxHP = 300;
-                        powerup3.CurrentHP = gameManager.player.TripleShotTimer;
-                    }
+                    bar.MaxHP = 300;
+                    bar.CurrentHP = gameManager.player.TripleShotTimer;
+                    icon.Image = Properties.Resources.triple_shoot;
                 }
-                else if(put is PowerUpType.FireRateBooster)
+                else if (put == PowerUpType.FireRateBooster)
                 {
-                    if (count == 0)
-                    {
-                        powerup1.MaxHP = 300;
-                        powerup1.CurrentHP = gameManager.player.FireRateBoosterTimer;
-                    }
-                    else if (count == 1)
-                    {
-                        powerup2.MaxHP = 300;
-                        powerup2.CurrentHP = gameManager.player.FireRateBoosterTimer;
-                    }
-                    else if (count == 2)
-                    {
-                        powerup3.MaxHP = 300;
-                        powerup3.CurrentHP = gameManager.player.FireRateBoosterTimer;
-                    }
+                    bar.MaxHP = 300;
+                    bar.CurrentHP = gameManager.player.FireRateBoosterTimer;
+                    icon.Image = Properties.Resources.fire_rate;
                 }
                 count++;
             }
-            if(count == 0)
-            {
-                powerup1.Visible = false;
-                powerup2.Visible = false;
-                powerup3.Visible = false;
-            }
-            else if (count == 1)
-            {
-                if(!powerup1.Visible)
-                    powerup1.Visible = true;
-                powerup2.Visible = false;
-                powerup3.Visible = false;
-            }
-            else if (count == 2)
-            {
-                if(!powerup1.Visible)
-                    powerup1.Visible = true;
-                if (!powerup2.Visible)
-                    powerup2.Visible = true;
-                powerup3.Visible = false;
-            }
-            else if (count == 3)
-            {
-                if (!powerup1.Visible)
-                    powerup1.Visible = true;
-                if (!powerup2.Visible)
-                    powerup2.Visible = true;
-                if(!powerup3.Visible)
-                    powerup3.Visible = true;
-            }
+
+            powerup1.Visible = powerup1_icon.Visible = count > 0;
+            powerup2.Visible = powerup2_icon.Visible = count > 1;
+            powerup3.Visible = powerup3_icon.Visible = count > 2;
         }
 
         private void resume_btn_Click(object sender, EventArgs e)
