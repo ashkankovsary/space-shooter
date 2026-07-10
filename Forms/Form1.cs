@@ -21,6 +21,11 @@ namespace Space_Shooter_game
 
             about.Click += about_Click;
             play.Click += play_Click;
+            play.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            shop.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            options.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            about.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            exit.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
         }
 
         protected override void ApplyLayout(){}

@@ -22,8 +22,8 @@ namespace Space_Shooter_game
         private static WaveOutEvent musicOutput;
         private static AudioFileReader musicReader;
 
-        public static float MusicVolume = 0.5f;
-        public static float SfxVolume = 0.7f;
+        public static float MusicVolume = 0.2f;
+        public static float SfxVolume = 0.2f;
 
         private static string GetPath(string fileName) =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Audio", fileName);
@@ -63,9 +63,6 @@ namespace Space_Shooter_game
             musicReader = null;
         }
 
-        // Fire-and-forget: هر SFX یه device/reader مجزای خودشو داره
-        // که بعد از تموم شدن پخش، خودش Dispose می‌شه. این یعنی چندتا
-        // SFX می‌تونن هم‌زمان روی هم پخش بشن (مثلاً چندتا برخورد تیر پشت‌سرهم).
         public static void PlaySfx(string fileName)
         {
             var reader = new AudioFileReader(GetPath(fileName)) { Volume = SfxVolume };

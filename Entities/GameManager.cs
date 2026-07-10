@@ -93,8 +93,9 @@ namespace Space_Shooter_game
                 {
                     if (player.ShieldTimer > 0)
                         player.ShieldTimer = 0;
-                    else player.TakeDamage(player.CurrentHP);
+                    else player.TakeDamage(GameSettings.Player.CollisionDamage);
                     enemy.TakeDamage(enemy.CurrentHP);
+                    AudioManager.PlaySfx(Sounds.ShipCollision);
                 }
             }
             foreach(Bullet bullet in bulletList)
@@ -106,6 +107,7 @@ namespace Space_Shooter_game
                         if(player.ShieldTimer == 0)
                             player.TakeDamage(bullet.Damage);
                         bullet.Removed = true;
+                        AudioManager.PlaySfx(Sounds.PlayerBulletHit);
                     }
                 }
                 if(bullet.Owner == BulletOwner.Player)
@@ -116,6 +118,7 @@ namespace Space_Shooter_game
                         {
                             enemy.TakeDamage(bullet.Damage);
                             bullet.Removed = true;
+                            AudioManager.PlaySfx(Sounds.EnemyBulletHit);
                         }
                     }
                 }
@@ -130,24 +133,28 @@ namespace Space_Shooter_game
                         if (player.CurrentHP >= 50)
                             player.CurrentHP = 100;
                         else player.CurrentHP += 50;
+                        AudioManager.PlaySfx(Sounds.HealthPackUse);
                     }
                     else if(powerUp.Type == PowerUpType.TripleShot)
                     {
                         if(player.TripleShotTimer == 0)
                             player.ActivePowerUps.Add(PowerUpType.TripleShot);
                         player.TripleShotTimer = 300;
+                        AudioManager.PlaySfx(Sounds.PowerUpPickup);
                     }
                     else if(powerUp.Type == PowerUpType.FireRateBooster)
                     {
                         if (player.FireRateBoosterTimer == 0)
                             player.ActivePowerUps.Add(PowerUpType.FireRateBooster);
                         player.FireRateBoosterTimer = 300;
+                        AudioManager.PlaySfx(Sounds.PowerUpPickup);
                     }
                     else if(powerUp.Type == PowerUpType.Shield)
                     {
                         if (player.ShieldTimer == 0)
                             player.ActivePowerUps.Add(PowerUpType.Shield);
                         player.ShieldTimer = 150;
+                        AudioManager.PlaySfx(Sounds.PowerUpPickup);
                     }
                 }
             }
@@ -277,6 +284,7 @@ namespace Space_Shooter_game
                                 GameSettings.PowerUp.HealthPackRadius, PowerUpType.HealthPack));
                         }
                     }
+                    AudioManager.PlaySfx(Sounds.EnemyDestroyed);
                 }
             }
             player.ActivePowerUps.RemoveAll(p => p == PowerUpType.TripleShot && player.TripleShotTimer == 0);

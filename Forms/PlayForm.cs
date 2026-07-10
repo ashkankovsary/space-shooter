@@ -18,9 +18,12 @@ namespace Space_Shooter_game
             this.KeyDown += PlayForm_KeyDown;
             this.KeyUp += PlayForm_KeyUp;
             this.Shown += PlayForm_Shown;
+            this.FormClosed += (s, e) => AudioManager.StopMusic();
 
             resume_btn.Click += resume_btn_Click;
             exit_btn.Click += exit_btn_Click;
+            resume_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            exit_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
 
             timer.Start();
         }
@@ -34,6 +37,7 @@ namespace Space_Shooter_game
             gameManager = new GameManager(ClientSize.Width, ClientSize.Height);
             hp_label.Location = new Point(ClientSize.Width - 390, 15);
             hpbar.Location = new Point(ClientSize.Width - 350, 20);
+            AudioManager.PlayMusic(Sounds.MusicWave1To9);
         }
         private void PlayForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -78,11 +82,6 @@ namespace Space_Shooter_game
             hpbar.CurrentHP = gameManager.player.CurrentHP;
 
             int count = 0;
-            /*powerup1.MaxHP = 300;
-            powerup1.CurrentHP = gameManager.player.TripleShotTimer;
-            if(powerup1.CurrentHP == 0) powerup1.Visible = false;
-            if (!powerup1.Visible && gameManager.player.TripleShotTimer > 0)
-                powerup1.Visible = true;*/
 
             foreach(PowerUpType put in gameManager.player.ActivePowerUps)
             {

@@ -6,6 +6,7 @@
         {
             public static readonly float Speed = 10f;
             public static readonly float CollisionRadius = 40f;
+            public static readonly int CollisionDamage = 40;
             public static readonly int MaxHP = 100;
             public static readonly int ShootCooldown = 12;
             public static readonly int bulletDamage = 15;
