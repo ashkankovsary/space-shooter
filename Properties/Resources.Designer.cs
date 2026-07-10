@@ -83,6 +83,16 @@ namespace Space_Shooter_game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap coin_silver {
+            get {
+                object obj = ResourceManager.GetObject("coin_silver", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap enemy_bullet {
             get {
                 object obj = ResourceManager.GetObject("enemy_bullet", resourceCulture);
@@ -216,6 +226,16 @@ namespace Space_Shooter_game.Properties {
         internal static System.Drawing.Bitmap player_bullet {
             get {
                 object obj = ResourceManager.GetObject("player_bullet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_shield {
+            get {
+                object obj = ResourceManager.GetObject("player_shield", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
