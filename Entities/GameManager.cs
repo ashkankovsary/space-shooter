@@ -13,6 +13,7 @@ namespace Space_Shooter_game
         public List<Bullet> bulletList;
         public List<PowerUp> powerUpList;
         public List<Coin> coinList;
+        public WaveManager waveManager { get; private  set; }
 
         private int Width;
         private int Height;
@@ -29,25 +30,13 @@ namespace Space_Shooter_game
             bulletList = new List<Bullet>();
             powerUpList = new List<PowerUp>();
             coinList = new List<Coin>();
-
-            enemyList.Add(new StandardEnemy(600, 200));
-            enemyList.Add(new ScoutEnemy(900, 200));
-            enemyList.Add(new ShooterEnemy(1200, 200));
-            enemyList.Add(new TerroristEnemy(1100, 200));
-
-            enemyList.Add(new StandardEnemy(1200, 100));
-            enemyList.Add(new ScoutEnemy(900, 100));
-            enemyList.Add(new ShooterEnemy(600, 100));
-            enemyList.Add(new TerroristEnemy(1100, 100));
-
-            enemyList.Add(new StandardEnemy(300, 100));
-            enemyList.Add(new ScoutEnemy(400, 100));
-            enemyList.Add(new ShooterEnemy(200, 100));
-            enemyList.Add(new TerroristEnemy(500, 100));
+            waveManager = new WaveManager(width);
         }
 
         public void Update()
         {
+            waveManager.Update(this);
+
             player.Move(player);
             player.CheckTripleShot();
             player.CheckFireRateBooster();
@@ -57,11 +46,15 @@ namespace Space_Shooter_game
             {
                 if (player.FireRateBoosterTimer > 0)
                     player.shootCooldown = GameSettings.Player.ShootCooldown / 2;
-                bulletList.Add(new Bullet(player.X, player.Y - player.CollisionRadius, 0, -1, BulletOwner.Player, GameSettings.Player.bulletDamage));
+
+                int playerDamage = (int)(GameSettings.Player.bulletDamage * 
+                    (1f - GameSettings.Wave.PlayerBulletDamageGrowthPerWave * (waveManager.CurrentWave - 1)));
+
+                bulletList.Add(new Bullet(player.X, player.Y - player.CollisionRadius, 0, -1, BulletOwner.Player, playerDamage));
                 if(player.TripleShotTimer > 0)
                 {
-                    bulletList.Add(new Bullet(player.X, player.Y - player.CollisionRadius, -0.6f, -0.8f, BulletOwner.Player, GameSettings.Player.bulletDamage));
-                    bulletList.Add(new Bullet(player.X, player.Y - player.CollisionRadius, 0.6f, -0.8f, BulletOwner.Player, GameSettings.Player.bulletDamage));
+                    bulletList.Add(new Bullet(player.X, player.Y - player.CollisionRadius, -0.6f, -0.8f, BulletOwner.Player, playerDamage));
+                    bulletList.Add(new Bullet(player.X, player.Y - player.CollisionRadius, 0.6f, -0.8f, BulletOwner.Player, playerDamage));
                 }
             }
             foreach (Enemy enemy in enemyList)
