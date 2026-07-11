@@ -37,6 +37,7 @@ namespace Space_Shooter_game
             gameManager = new GameManager(ClientSize.Width, ClientSize.Height);
             hp_label.Location = new Point(ClientSize.Width - 390, 15);
             hpbar.Location = new Point(ClientSize.Width - 350, 20);
+            wave_label.Location = new Point((ClientSize.Width - wave_label.Width) / 2, 21);
             AudioManager.PlayMusic(Sounds.MusicWave1To9);
         }
         private void PlayForm_KeyDown(object sender, KeyEventArgs e)
@@ -81,7 +82,16 @@ namespace Space_Shooter_game
             coin.Text = $"{gameManager.player.Coins}";
             hpbar.MaxHP = gameManager.player.MaxHP;
             hpbar.CurrentHP = gameManager.player.CurrentHP;
+            wave_label.Text = $"Wave {gameManager.waveManager.CurrentWave}";
+            wave_label.Location = new Point((ClientSize.Width - wave_label.Width) / 2, 21);
 
+            bool showBanner = gameManager.waveManager.State == WaveState.ShowingBanner;
+            wave_banner.Visible = showBanner;
+            if (showBanner)
+            {
+                wave_banner.Text = gameManager.waveManager.BannerText;
+                wave_banner.Location = new Point((ClientSize.Width - wave_banner.Width) / 2, (ClientSize.Height - wave_banner.Height) / 2);
+            }
             int count = 0;
 
             foreach (PowerUpType put in gameManager.player.ActivePowerUps)

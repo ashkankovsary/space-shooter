@@ -39,6 +39,8 @@
             coin = new Label();
             hp_label = new Label();
             score = new Label();
+            wave_label = new Label();
+            wave_banner = new Label();
             pause_panel.SuspendLayout();
             bottom_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)powerup3_icon).BeginInit();
@@ -220,6 +222,7 @@
             top_panel.Controls.Add(hp_label);
             top_panel.Controls.Add(score);
             top_panel.Controls.Add(hpbar);
+            top_panel.Controls.Add(wave_label);
             top_panel.Dock = DockStyle.Top;
             top_panel.Location = new Point(0, 0);
             top_panel.Name = "top_panel";
@@ -278,6 +281,31 @@
             score.TabIndex = 0;
             score.Text = "0";
             // 
+            // wave_label
+            // 
+            wave_label.AutoSize = true;
+            wave_label.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            wave_label.ForeColor = Color.White;
+            wave_label.Location = new Point(560, 21);
+            wave_label.Name = "wave_label";
+            wave_label.Size = new Size(70, 28);
+            wave_label.TabIndex = 7;
+            wave_label.Text = "Wave 1";
+            // 
+            // wave_banner
+            // 
+            wave_banner.AutoSize = true;
+            wave_banner.BackColor = Color.FromArgb(40, 40, 40);
+            wave_banner.Font = new Font("Segoe UI", 40F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            wave_banner.ForeColor = Color.Gold;
+            wave_banner.Location = new Point(0, 0);
+            wave_banner.Name = "wave_banner";
+            wave_banner.Padding = new Padding(30, 15, 30, 15);
+            wave_banner.Size = new Size(200, 80);
+            wave_banner.TabIndex = 8;
+            wave_banner.Text = "Wave 1";
+            wave_banner.Visible = false;
+            // 
             // PlayForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -287,6 +315,7 @@
             ClientSize = new Size(1221, 608);
             Controls.Add(bottom_panel);
             Controls.Add(top_panel);
+            Controls.Add(wave_banner);
             Controls.Add(pause_panel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "PlayForm";
@@ -319,6 +348,8 @@
         private Label score;
         private Label hp_label;
         private Label coin;
+        private Label wave_label;
+        private Label wave_banner;
         private PictureBox pic_coin;
         private PictureBox EX_icon;
         private HPbar powerup1;
