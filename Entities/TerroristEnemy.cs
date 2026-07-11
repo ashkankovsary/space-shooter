@@ -45,12 +45,18 @@ namespace Space_Shooter_game
             }
             X += dX * Speed;
             Y += dY * Speed;
+            ApplyTilt(dX * Speed);
         }
 
         public override void Draw(Graphics g)
         {
             Image img = Properties.Resources.enemy_terrorist;
-            g.DrawImage(img, X - img.Width / 2f, Y - img.Height / 2f, img.Width, img.Height);
+
+            var state = g.Save();
+            g.TranslateTransform(X, Y);
+            g.RotateTransform(-RotationAngle);
+            g.DrawImage(img, -img.Width / 2f, -img.Height / 2f, img.Width, img.Height);
+            g.Restore(state);
         }
     }
 }

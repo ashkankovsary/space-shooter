@@ -35,7 +35,14 @@ namespace Space_Shooter_game
         public override void Draw(Graphics g)
         {
             Image img = Owner == BulletOwner.Player ? Properties.Resources.player_bullet : Properties.Resources.enemy_bullet;
-            g.DrawImage(img, X - img.Width / 2f, Y - img.Height / 2f, img.Width, img.Height);
+
+            float angle = (float)(Math.Atan2(DirY, DirX) * (180.0 / Math.PI)) + 90f;
+
+            var state = g.Save();
+            g.TranslateTransform(X, Y);
+            g.RotateTransform(angle);
+            g.DrawImage(img, -img.Width / 2f, -img.Height / 2f, img.Width, img.Height);
+            g.Restore(state);
         }
     }
 }

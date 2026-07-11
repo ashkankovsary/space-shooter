@@ -24,15 +24,22 @@ namespace Space_Shooter_game
 
         public override void Move(Player player)
         {
+            float prevX = X;
             Y += Speed;
             angle += frequency;
             X = centerX + ((float)Math.Sin(angle) * amplitude);
+            ApplyTilt(X - prevX);
         }
 
         public override void Draw(Graphics g)
         {
             Image img = Properties.Resources.enemy_scout;
-            g.DrawImage(img, X - img.Width / 2f, Y - img.Height / 2f, img.Width, img.Height);
+
+            var state = g.Save();
+            g.TranslateTransform(X, Y);
+            g.RotateTransform(-RotationAngle);
+            g.DrawImage(img, -img.Width / 2f, -img.Height / 2f, img.Width, img.Height);
+            g.Restore(state);
         }
     }
 }

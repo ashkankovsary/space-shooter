@@ -39,18 +39,22 @@ namespace Space_Shooter_game
             if (MovingLeft) dx -= 1;
             if (MovingRight) dx += 1;
 
+            float horizontalMovement = 0f;
             if (dx != 0 || dy != 0)
             {
                 int pacw = PlayForm.ActiveForm.ClientSize.Width;
                 int pach = PlayForm.ActiveForm.ClientSize.Height;
                 float length = (float)System.Math.Sqrt(dx * dx + dy * dy);
-                X += (dx / length) * Speed;
+                horizontalMovement = (dx / length) * Speed;
+
+                X += horizontalMovement;
                 Y += (dy / length) * Speed;
                 if (X < CollisionRadius) X = CollisionRadius;
                 if (Y < CollisionRadius) Y = CollisionRadius;
                 if (X > pacw - CollisionRadius) X = pacw - CollisionRadius;
                 if (Y > pach - CollisionRadius) Y = pach - CollisionRadius;
             }
+            ApplyTilt(horizontalMovement);
         }
 
         public bool Shoot()
@@ -96,7 +100,12 @@ namespace Space_Shooter_game
         public override void Draw(Graphics g)
         {
             Image img = Properties.Resources.player_ship;
-            g.DrawImage(img, X - img.Width / 2f, Y - img.Height / 2f, img.Width, img.Height);
+
+            var state = g.Save();
+            g.TranslateTransform(X, Y);
+            g.RotateTransform(RotationAngle);
+            g.DrawImage(img, -img.Width / 2f, -img.Height / 2f, img.Width, img.Height);
+            g.Restore(state);
 
             if (ShieldTimer > 0)
             {

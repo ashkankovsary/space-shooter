@@ -9,6 +9,7 @@ namespace Space_Shooter_game
         public float Y;
         public float Speed;
         public float CollisionRadius;
+        public float RotationAngle;
 
         protected GameEntity(float x, float y, float speed, float collisionRadius)
         {
@@ -27,6 +28,14 @@ namespace Space_Shooter_game
             float dy = Y - other.Y;
             float distance = (float)Math.Sqrt(dx * dx + dy * dy);
             return distance <= (CollisionRadius + other.CollisionRadius);
+        }
+
+        protected void ApplyTilt(float horizontalDelta, float maxAngle = 25f, float smoothing = 0.3f)
+        {
+            float ratio = Speed > 0 ? horizontalDelta / Speed : 0f;
+            ratio = Math.Clamp(ratio, -1f, 1f);
+            float target = ratio * maxAngle;
+            RotationAngle += (target - RotationAngle) * smoothing;
         }
     }
 }
