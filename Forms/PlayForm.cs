@@ -78,6 +78,7 @@ namespace Space_Shooter_game
         private void UpdateHUD()
         {
             score.Text = $"{gameManager.player.Score}";
+            coin.Text = $"{gameManager.player.Coins}";
             hpbar.MaxHP = gameManager.player.MaxHP;
             hpbar.CurrentHP = gameManager.player.CurrentHP;
 

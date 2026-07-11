@@ -84,5 +84,15 @@
             public static readonly float HealthPackRadius = 15f;
             public static readonly float FireRateBoosterRadius = 15f;
         }
+
+        public static class Coin
+        {
+            public static readonly float Speed = 3f;
+            public static readonly float CollisionRadius = 18f;
+            public static readonly int GoldValue = 5;
+            public static readonly int SilverValue = 1;
+            public static readonly float DropChance = 0.1f;
+            public static readonly float GoldChance = 0.2f;
+        }
     }
 }

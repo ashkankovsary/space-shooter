@@ -12,6 +12,7 @@ namespace Space_Shooter_game
         public List<Enemy> enemyList;
         public List<Bullet> bulletList;
         public List<PowerUp> powerUpList;
+        public List<Coin> coinList;
 
         private int Width;
         private int Height;
@@ -27,6 +28,7 @@ namespace Space_Shooter_game
             enemyList = new List<Enemy>();
             bulletList = new List<Bullet>();
             powerUpList = new List<PowerUp>();
+            coinList = new List<Coin>();
 
             enemyList.Add(new StandardEnemy(600, 200));
             enemyList.Add(new ScoutEnemy(900, 200));
@@ -81,6 +83,10 @@ namespace Space_Shooter_game
             foreach (PowerUp powerUp in powerUpList)
             {
                 powerUp.Move(player);
+            }
+            foreach(Coin coin in coinList)
+            {
+                coin.Move(player);
             }
             CheckCollision();
             Cleanup();
@@ -158,6 +164,15 @@ namespace Space_Shooter_game
                     }
                 }
             }
+            foreach(Coin coin in coinList)
+            {
+                if (coin.IsCollidingWith(player))
+                {
+                    coin.Removed = true;
+                    player.Coins += coin.Value;
+                    AudioManager.PlaySfx(Sounds.CoinDrop);
+                }
+            }
         }
         public void Cleanup()
         {
@@ -166,6 +181,15 @@ namespace Space_Shooter_game
                 if (enemy.IsDead)
                 {
                     player.Score += enemy.ScoreValue;
+
+                    float coinRoll = (float)random.Next(1, 101) / 100;
+                    if(coinRoll <= GameSettings.Coin.DropChance)
+                    {
+                        float typeRoll = (float)random.Next(1,101) / 100;
+                        CoinType type = typeRoll <= GameSettings.Coin.GoldChance? CoinType.Gold: CoinType.Silver;
+                        coinList.Add(new Coin(enemy.X , enemy.Y + 2 * enemy.CollisionRadius, type));
+                    }
+
                     int num = random.Next(1, 101);
                     float chance = (float)num / 100;
                     if(enemy is  StandardEnemy)
@@ -294,6 +318,7 @@ namespace Space_Shooter_game
             bulletList.RemoveAll(bullet => bullet.Removed || bullet.X < 0 || bullet.X > Width || bullet.Y < 0 || bullet.Y > Height);
             enemyList.RemoveAll(enemy => enemy.IsDead || enemy.X < 0 || enemy.X > Width || enemy.Y > Height);
             powerUpList.RemoveAll(powerUp => powerUp.Removed || powerUp.Y > Height);
+            coinList.RemoveAll(coin => coin.Removed || coin.Y >  Height);
         }
         public void Draw(Graphics g)
         {
@@ -304,6 +329,8 @@ namespace Space_Shooter_game
                 bullet.Draw(g);
             foreach(PowerUp powerUp in powerUpList)
                 powerUp.Draw(g);
+            foreach(Coin coin in  coinList) 
+                coin.Draw(g);
         }
     }
 }
