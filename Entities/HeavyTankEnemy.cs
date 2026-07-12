@@ -19,18 +19,27 @@ namespace Space_Shooter_game
         public BossPhase Phase { get; private set; } = BossPhase.Approaching;
         public bool MiniWaveSpawnRequested { get; private set; } = false;
         public bool DeathSequenceComplete { get; private set; } = false;
+        public float ShotAngleOffsetDeg { get; private set; } = 0f;
 
         public bool IsInvulnerable =>
             Phase == BossPhase.Retreating || Phase == BossPhase.MiniWaveWait || Phase == BossPhase.Returning;
 
+        private static readonly float[] RetreatThresholds =
+        {
+            GameSettings.HeavyTankEnemy.Phase2Threshold,
+            GameSettings.HeavyTankEnemy.Phase3Threshold,
+            GameSettings.HeavyTankEnemy.RetreatThreshold
+        };
+        private int retreatStage = 0;
+
         private readonly float centerX;
         private readonly float targetY;
+        private readonly Random random = new Random();
 
         private float oscillationAngle;
         private float wobbleAngle;
         private int shootTimer;
         private int explosionTimer;
-        private bool hasRetreatedOnce;
 
         public HeavyTankEnemy(float x, float y, int screenHeight)
             : base(x, y, speed: GameSettings.HeavyTankEnemy.Speed,
@@ -57,10 +66,11 @@ namespace Space_Shooter_game
                 return;
             }
 
-            if (!hasRetreatedOnce && Phase == BossPhase.Fighting &&
-                CurrentHP <= MaxHP * GameSettings.HeavyTankEnemy.RetreatThreshold)
+            if ((Phase == BossPhase.Fighting || Phase == BossPhase.Enraged) &&
+                retreatStage < RetreatThresholds.Length &&
+                CurrentHP <= MaxHP * RetreatThresholds[retreatStage])
             {
-                hasRetreatedOnce = true;
+                retreatStage++;
                 Phase = BossPhase.Retreating;
             }
         }
@@ -125,6 +135,11 @@ namespace Space_Shooter_game
                 Phase = BossPhase.Returning;
         }
 
+        public void ConsumeMiniWaveRequest()
+        {
+            MiniWaveSpawnRequested = false;
+        }
+
         public override bool Shoot()
         {
             if (Phase != BossPhase.Fighting && Phase != BossPhase.Enraged) return false;
@@ -136,6 +151,10 @@ namespace Space_Shooter_game
             if (shootTimer <= 0)
             {
                 shootTimer = cooldown;
+                int shift = random.Next(
+                    (int)GameSettings.HeavyTankEnemy.MinShotAngleShiftDeg,
+                    (int)GameSettings.HeavyTankEnemy.MaxShotAngleShiftDeg + 1);
+                ShotAngleOffsetDeg = (ShotAngleOffsetDeg + shift) % 360f;
                 return true;
             }
             return false;

@@ -80,7 +80,7 @@
         {
             public static readonly float Speed = 4f;
             public static readonly float CollisionRadius = 200f;
-            public static readonly int MaxHP = 4000;
+            public static readonly int MaxHP = 10000;
             public static readonly int ScoreValue = 5000;
             public static readonly int bulletDamage = 20;
             public static readonly int bulletDirections = 10;
@@ -94,8 +94,8 @@
 
             public static readonly float RetreatSpeed = 6f;        // speed of come and out again
 
-            public static readonly int ShootCooldown = 30;         // normal
-            public static readonly int EnragedShootCooldown = 15;  // when come again angry
+            public static readonly int ShootCooldown = 20;         // normal
+            public static readonly int EnragedShootCooldown = 10;  // when come again angry
 
             public static readonly float Phase2Threshold = 0.75f;
             public static readonly float Phase3Threshold = 0.50f;
@@ -103,6 +103,15 @@
 
             public static readonly int MiniWaveMinEnemies = 20;
             public static readonly int MiniWaveMaxEnemies = 30;
+
+            public static readonly float AmbientSpawnInterval = 30f;
+
+            public static readonly float MinShotAngleShiftDeg = 10f;
+            public static readonly float MaxShotAngleShiftDeg = 40f;
+
+            public static readonly float MiniWaveBaseSpawnInterval = 80f;
+            public static readonly float MiniWaveMinSpawnInterval = 60f;
+            public static readonly float MiniWaveSpawnIntervalDecayPerEnemy = 0.8f;
         }
 
         public static class PowerUp

@@ -95,9 +95,11 @@ namespace Space_Shooter_game
 
         private void SpawnBossBullets(HeavyTankEnemy tank)
         {
+            double baseAngle = tank.ShotAngleOffsetDeg * Math.PI / 180.0;
+
             for (int i = 0; i < GameSettings.HeavyTankEnemy.bulletDirections; i++)
             {
-                double angle = i * (2 * Math.PI / GameSettings.HeavyTankEnemy.bulletDirections);
+                double angle = baseAngle + i * (2 * Math.PI / GameSettings.HeavyTankEnemy.bulletDirections);
                 float dx = (float)Math.Cos(angle);
                 float dy = (float)Math.Sin(angle);
                 bulletList.Add(new Bullet(tank.X, tank.Y, dx, dy, BulletOwner.Enemy, GameSettings.HeavyTankEnemy.bulletDamage));
@@ -138,9 +140,15 @@ namespace Space_Shooter_game
                     {
                         if (bullet.IsCollidingWith(enemy))
                         {
-                            enemy.TakeDamage(bullet.Damage);
+                            bool canDamage = !(enemy is HeavyTankEnemy tank &&
+                                (tank.IsInvulnerable || tank.Phase == BossPhase.Dying));
+
+                            if (canDamage)
+                            {
+                                enemy.TakeDamage(bullet.Damage);
+                                AudioManager.PlaySfx(Sounds.EnemyBulletHit);
+                            }
                             bullet.Removed = true;
-                            AudioManager.PlaySfx(Sounds.EnemyBulletHit);
                         }
                     }
                 }

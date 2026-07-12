@@ -36,8 +36,15 @@ namespace Space_Shooter_game
 
         private HeavyTankEnemy boss;
         private bool bossSpawned;
-        private bool miniWaveHandled;
+        /// <summary>
+        /// ////////////////////////////////////////////////
+        /// </summary>
+        private bool miniWaveActive;
+        private int miniWaveEnemiesRemaining;
+        private int miniWaveSpawnTimer;
+        private int miniWaveSpawnInterval;
 
+        private int ambientSpawnTimer;
         private readonly Random random = new Random();
 
         public WaveManager(int screenWidth, int screenHeight)
@@ -119,26 +126,76 @@ namespace Space_Shooter_game
         {
             if (!bossSpawned)
             {
-                boss = new HeavyTankEnemy(screenWidth / 2f, -GameSettings.HeavyTankEnemy.CollisionRadius, screenHeight);
+                boss = new HeavyTankEnemy(screenWidth / 2f, -150f, screenHeight);
                 gameManager.enemyList.Add(boss);
                 bossSpawned = true;
+                ambientSpawnTimer = (int)GameSettings.HeavyTankEnemy.AmbientSpawnInterval;
             }
 
-            if (boss.MiniWaveSpawnRequested && !miniWaveHandled)
+            if (boss.MiniWaveSpawnRequested && !miniWaveActive)
             {
-                SpawnMiniWave(gameManager);
-                miniWaveHandled = true;
+                boss.ConsumeMiniWaveRequest();
+                StartMiniWave();
+                miniWaveActive = true;
             }
 
-            if (miniWaveHandled && boss.Phase == BossPhase.MiniWaveWait &&
-                gameManager.enemyList.All(e => e is HeavyTankEnemy))
+            if (miniWaveActive)
             {
-                boss.NotifyMiniWaveCleared();
+                UpdateMiniWaveSpawning(gameManager);
+
+                bool doneSpawningMiniWave = miniWaveEnemiesRemaining <= 0;
+                bool noMiniWaveEnemiesLeft = gameManager.enemyList.All(e => e is HeavyTankEnemy);
+
+                if (doneSpawningMiniWave && noMiniWaveEnemiesLeft && boss.Phase == BossPhase.MiniWaveWait)
+                {
+                    boss.NotifyMiniWaveCleared();
+                    miniWaveActive = false;
+                }
+            }
+
+            if (boss.Phase == BossPhase.Fighting || boss.Phase == BossPhase.Enraged)
+            {
+                ambientSpawnTimer--;
+                if (ambientSpawnTimer <= 0)
+                {
+                    SpawnEnemy(gameManager);
+                    ambientSpawnTimer = (int)GameSettings.HeavyTankEnemy.AmbientSpawnInterval;
+                }
             }
 
             if (boss.DeathSequenceComplete)
             {
                 State = WaveState.Victory;
+            }
+        }
+
+        private void StartMiniWave()
+        {
+            int count = random.Next(GameSettings.HeavyTankEnemy.MiniWaveMinEnemies,
+                GameSettings.HeavyTankEnemy.MiniWaveMaxEnemies + 1);
+
+            miniWaveEnemiesRemaining = count;
+            miniWaveSpawnInterval = (int)Math.Max(GameSettings.HeavyTankEnemy.MiniWaveMinSpawnInterval,
+                GameSettings.HeavyTankEnemy.MiniWaveBaseSpawnInterval -
+                GameSettings.HeavyTankEnemy.MiniWaveSpawnIntervalDecayPerEnemy * count);
+            miniWaveSpawnTimer = 0;
+        }
+
+        private void UpdateMiniWaveSpawning(GameManager gameManager)
+        {
+            if (miniWaveEnemiesRemaining <= 0) return;
+
+            miniWaveSpawnTimer--;
+            if (miniWaveSpawnTimer <= 0)
+            {
+                EnemyType type = PickWeightedEnemyType();
+                float x = random.Next(40, screenWidth - 40);
+                Enemy enemy = CreateEnemy(type, x, -70f);
+                ApplyWaveScaling(enemy);
+                gameManager.enemyList.Add(enemy);
+
+                miniWaveEnemiesRemaining--;
+                miniWaveSpawnTimer = miniWaveSpawnInterval;
             }
         }
 
@@ -149,22 +206,6 @@ namespace Space_Shooter_game
             Enemy enemy = CreateEnemy(type, x, -70f);
             ApplyWaveScaling(enemy);
             gameManager.enemyList.Add(enemy);
-        }
-
-        private void SpawnMiniWave(GameManager gameManager)
-        {
-            int count = random.Next(GameSettings.HeavyTankEnemy.MiniWaveMinEnemies,
-                GameSettings.HeavyTankEnemy.MiniWaveMaxEnemies + 1);
-
-            for (int i = 0; i < count; i++)
-            {
-                EnemyType type = PickWeightedEnemyType();
-                float x = random.Next(40, screenWidth - 40);
-                float y = -70f - i * 40f;
-                Enemy enemy = CreateEnemy(type, x, y);
-                ApplyWaveScaling(enemy);
-                gameManager.enemyList.Add(enemy);
-            }
         }
 
         private Enemy CreateEnemy(EnemyType type, float x, float y)
