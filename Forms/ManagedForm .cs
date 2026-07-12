@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Space_Shooter_game
 {
-    public abstract class ManagedForm : Form
+    public class ManagedForm : Form
     {
         public ManagedForm ParentManagedForm { get; private set; }
         public ManagedForm ActiveChild { get; private set; }
@@ -15,7 +15,7 @@ namespace Space_Shooter_game
         {
             this.FormClosed += ManagedForm_FormClosed;
         }
-        protected abstract void ApplyLayout();
+        protected virtual void ApplyLayout() { }
         protected virtual bool SyncsLocationWithParent => true;
         public void OpenChild(ManagedForm child)
         {

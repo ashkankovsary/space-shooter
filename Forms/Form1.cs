@@ -20,6 +20,12 @@ namespace Space_Shooter_game
             this.MinimumSize = new Size(1000, 600);
 
             about.Click += about_Click;
+            play.Click += play_Click;
+            play.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            shop.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            options.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            about.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            exit.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
         }
 
         protected override void ApplyLayout(){}
@@ -59,6 +65,14 @@ namespace Space_Shooter_game
         private void about_Click(object sender, EventArgs e)
         {
             this.OpenChild(new AboutForm());
+        }
+        private void play_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            PlayForm playForm = new PlayForm();
+            playForm.FormClosed += (s, args) => this.Show();
+            playForm.Show();
         }
     }
 }
