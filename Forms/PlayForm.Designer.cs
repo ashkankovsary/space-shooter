@@ -21,6 +21,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayForm));
             hpbar = new HPbar();
             pause_panel = new OverlayPanel();
+            victory_panel = new OverlayPanel();
+            victory_label = new Label();
+            victory_score_label = new Label();
+            victory_coins_label = new Label();
+            victory_restart_btn = new Button();
+            victory_menu_btn = new Button();
             exit_btn = new Button();
             restart_btn = new Button();
             resume_btn = new Button();
@@ -50,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)EX_icon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pic_coin).BeginInit();
             SuspendLayout();
+            victory_panel.SuspendLayout();
             // 
             // hpbar
             // 
@@ -73,6 +80,84 @@
             pause_panel.Size = new Size(1221, 608);
             pause_panel.TabIndex = 0;
             pause_panel.Visible = false;
+            // 
+            // victory_panel
+            // 
+            victory_panel.BackColor = Color.Transparent;
+            victory_panel.Controls.Add(victory_menu_btn);
+            victory_panel.Controls.Add(victory_restart_btn);
+            victory_panel.Controls.Add(victory_coins_label);
+            victory_panel.Controls.Add(victory_score_label);
+            victory_panel.Controls.Add(victory_label);
+            victory_panel.Dock = DockStyle.Fill;
+            victory_panel.Location = new Point(0, 0);
+            victory_panel.Name = "victory_panel";
+            victory_panel.Size = new Size(1221, 608);
+            victory_panel.TabIndex = 5;
+            victory_panel.Visible = false;
+            // 
+            // victory_label
+            // 
+            victory_label.Anchor = AnchorStyles.None;
+            victory_label.AutoSize = true;
+            victory_label.Font = new Font("Segoe UI", 26F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            victory_label.ForeColor = Color.Gold;
+            victory_label.Location = new Point(535, 70);
+            victory_label.Name = "victory_label";
+            victory_label.Size = new Size(180, 60);
+            victory_label.TabIndex = 0;
+            victory_label.Text = "VICTORY!";
+            victory_label.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // victory_score_label
+            // 
+            victory_score_label.Anchor = AnchorStyles.None;
+            victory_score_label.AutoSize = true;
+            victory_score_label.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            victory_score_label.ForeColor = Color.Cyan;
+            victory_score_label.Location = new Point(545, 150);
+            victory_score_label.Name = "victory_score_label";
+            victory_score_label.Size = new Size(130, 32);
+            victory_score_label.TabIndex = 1;
+            victory_score_label.Text = "Score: 0";
+            // 
+            // victory_coins_label
+            // 
+            victory_coins_label.Anchor = AnchorStyles.None;
+            victory_coins_label.AutoSize = true;
+            victory_coins_label.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            victory_coins_label.ForeColor = Color.Gold;
+            victory_coins_label.Location = new Point(545, 190);
+            victory_coins_label.Name = "victory_coins_label";
+            victory_coins_label.Size = new Size(130, 32);
+            victory_coins_label.TabIndex = 2;
+            victory_coins_label.Text = "Coins: 0";
+            // 
+            // victory_restart_btn
+            // 
+            victory_restart_btn.Anchor = AnchorStyles.None;
+            victory_restart_btn.BackColor = Color.DeepPink;
+            victory_restart_btn.Cursor = Cursors.Hand;
+            victory_restart_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            victory_restart_btn.Location = new Point(550, 250);
+            victory_restart_btn.Name = "victory_restart_btn";
+            victory_restart_btn.Size = new Size(150, 60);
+            victory_restart_btn.TabIndex = 3;
+            victory_restart_btn.Text = "Restart";
+            victory_restart_btn.UseVisualStyleBackColor = false;
+            // 
+            // victory_menu_btn
+            // 
+            victory_menu_btn.Anchor = AnchorStyles.None;
+            victory_menu_btn.BackColor = Color.DeepPink;
+            victory_menu_btn.Cursor = Cursors.Hand;
+            victory_menu_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            victory_menu_btn.Location = new Point(550, 330);
+            victory_menu_btn.Name = "victory_menu_btn";
+            victory_menu_btn.Size = new Size(150, 60);
+            victory_menu_btn.TabIndex = 4;
+            victory_menu_btn.Text = "Menu";
+            victory_menu_btn.UseVisualStyleBackColor = false;
             // 
             // exit_btn
             // 
@@ -316,6 +401,7 @@
             Controls.Add(bottom_panel);
             Controls.Add(top_panel);
             Controls.Add(wave_banner);
+            Controls.Add(victory_panel);
             Controls.Add(pause_panel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "PlayForm";
@@ -323,6 +409,8 @@
             WindowState = FormWindowState.Maximized;
             pause_panel.ResumeLayout(false);
             pause_panel.PerformLayout();
+            victory_panel.ResumeLayout(false);
+            victory_panel.PerformLayout();
             bottom_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)powerup3_icon).EndInit();
             ((System.ComponentModel.ISupportInitialize)powerup2_icon).EndInit();
@@ -358,5 +446,11 @@
         private PictureBox powerup1_icon;
         private PictureBox powerup2_icon;
         private PictureBox powerup3_icon;
+        private OverlayPanel victory_panel;
+        private Label victory_label;
+        private Label victory_score_label;
+        private Label victory_coins_label;
+        private Button victory_restart_btn;
+        private Button victory_menu_btn;
     }
 }

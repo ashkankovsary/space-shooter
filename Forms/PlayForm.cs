@@ -23,7 +23,13 @@ namespace Space_Shooter_game
             resume_btn.Click += resume_btn_Click;
             exit_btn.Click += exit_btn_Click;
             resume_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            restart_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
             exit_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+
+            victory_restart_btn.Click += (s, e) => RestartGame();
+            victory_restart_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            victory_menu_btn.Click += exit_btn_Click;
+            victory_menu_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
 
             timer.Start();
         }
@@ -31,6 +37,18 @@ namespace Space_Shooter_game
         protected override bool SyncsLocationWithParent => false;
 
         protected override void ApplyLayout() { }
+
+        private void RestartGame()
+        {
+            pause_panel.Visible = false;
+            victory_panel.Visible = false;
+            gamePaused = false;
+
+            gameManager = new GameManager(ClientSize.Width, ClientSize.Height);
+            AudioManager.PlayMusic(Sounds.MusicWave1To9);
+
+            timer.Start();
+        }
 
         private void PlayForm_Shown(object sender, EventArgs e)
         {
@@ -45,7 +63,7 @@ namespace Space_Shooter_game
             float pcr = gameManager.player.CollisionRadius;
             if (e.KeyCode == Keys.Escape)
             {
-                if (!gamePaused)
+                if (!gamePaused && !victory_panel.Visible)
                 {
                     PauseGame();
                     timer.Stop();
@@ -126,6 +144,17 @@ namespace Space_Shooter_game
             powerup3.Visible = powerup3_icon.Visible = count > 2;
         }
 
+        private void ShowVictory()
+        {
+            timer.Stop();
+            AudioManager.StopMusic();
+
+            victory_score_label.Text = $"Score: {gameManager.player.Score}";
+            victory_coins_label.Text = $"Coins: {gameManager.player.Coins}";
+            victory_panel.Visible = true;
+            victory_panel.BringToFront();
+        }
+
         private void resume_btn_Click(object sender, EventArgs e)
         {
             pause_panel.Visible = false;
@@ -147,9 +176,15 @@ namespace Space_Shooter_game
         private void timer_Tick(object sender, EventArgs e)
         {
             if (gameManager.player.IsDead) this.Close();
+
             gameManager.Update();
             UpdateHUD();
             Invalidate();
+
+            if (gameManager.waveManager.State == WaveState.Victory)
+            {
+                ShowVictory();
+            }
         }
     }
 }
