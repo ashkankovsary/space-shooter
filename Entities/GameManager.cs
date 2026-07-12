@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using static Space_Shooter_game.GameSettings;
 
 namespace Space_Shooter_game
@@ -30,7 +31,7 @@ namespace Space_Shooter_game
             bulletList = new List<Bullet>();
             powerUpList = new List<PowerUp>();
             coinList = new List<Coin>();
-            waveManager = new WaveManager(width);
+            waveManager = new WaveManager(width, height);
         }
 
         public void Update()
@@ -68,6 +69,13 @@ namespace Space_Shooter_game
                         shooter.ResetShootTimer();
                     }
                 }
+                else if (enemy is HeavyTankEnemy tank)
+                {
+                    if (tank.Shoot())
+                    {
+                        SpawnBossBullets(tank);
+                    }
+                }
             }
             foreach(Bullet bullet in bulletList)
             {
@@ -84,6 +92,18 @@ namespace Space_Shooter_game
             CheckCollision();
             Cleanup();
         }
+
+        private void SpawnBossBullets(HeavyTankEnemy tank)
+        {
+            for (int i = 0; i < GameSettings.HeavyTankEnemy.bulletDirections; i++)
+            {
+                double angle = i * (2 * Math.PI / GameSettings.HeavyTankEnemy.bulletDirections);
+                float dx = (float)Math.Cos(angle);
+                float dy = (float)Math.Sin(angle);
+                bulletList.Add(new Bullet(tank.X, tank.Y, dx, dy, BulletOwner.Enemy, GameSettings.HeavyTankEnemy.bulletDamage));
+            }
+        }
+
         public void CheckCollision()
         {
             foreach(Enemy enemy in enemyList)
@@ -93,7 +113,10 @@ namespace Space_Shooter_game
                     if (player.ShieldTimer > 0)
                         player.ShieldTimer = 0;
                     else player.TakeDamage(GameSettings.Player.CollisionDamage);
-                    enemy.TakeDamage(enemy.CurrentHP);
+
+                    if(!(enemy is HeavyTankEnemy))
+                        enemy.TakeDamage(enemy.CurrentHP);
+
                     AudioManager.PlaySfx(Sounds.ShipCollision);
                 }
             }
@@ -316,7 +339,7 @@ namespace Space_Shooter_game
         public void Draw(Graphics g)
         {
             player.Draw(g);
-            foreach(Enemy enemy in enemyList)
+            foreach(Enemy enemy in enemyList.OrderByDescending(e => e.CollisionRadius))
                 enemy.Draw(g);
             foreach(Bullet bullet in bulletList)
                 bullet.Draw(g);

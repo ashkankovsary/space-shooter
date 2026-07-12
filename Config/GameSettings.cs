@@ -76,6 +76,35 @@
             public static readonly float FireRateBoosterChance = 0.11f;
         }
 
+        public static class HeavyTankEnemy
+        {
+            public static readonly float Speed = 4f;
+            public static readonly float CollisionRadius = 200f;
+            public static readonly int MaxHP = 4000;
+            public static readonly int ScoreValue = 5000;
+            public static readonly int bulletDamage = 20;
+            public static readonly int bulletDirections = 10;
+
+            public static readonly float TargetYRatio = 0.25f;
+
+            public static readonly float OscillationAmplitude = 250f;
+            public static readonly float OscillationFrequency = 0.015f;
+            public static readonly float WobbleAmplitude = 15f;
+            public static readonly float WobbleFrequency = 0.05f;
+
+            public static readonly float RetreatSpeed = 6f;        // speed of come and out again
+
+            public static readonly int ShootCooldown = 30;         // normal
+            public static readonly int EnragedShootCooldown = 15;  // when come again angry
+
+            public static readonly float Phase2Threshold = 0.75f;
+            public static readonly float Phase3Threshold = 0.50f;
+            public static readonly float RetreatThreshold = 0.25f;
+
+            public static readonly int MiniWaveMinEnemies = 20;
+            public static readonly int MiniWaveMaxEnemies = 30;
+        }
+
         public static class PowerUp
         {
             public static readonly float Speed = 4f;

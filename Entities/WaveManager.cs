@@ -4,19 +4,20 @@ using System.Linq;
 
 namespace Space_Shooter_game
 {
-    public enum EnemyType 
-    { 
+    public enum EnemyType
+    {
         Standard,
         Scout,
         Shooter,
-        Terrorist 
+        Terrorist
     }
     public enum WaveState
     {
         ShowingBanner,
         Spawning,
         WaitingForClear,
-        Cleared
+        BossFight,
+        Victory
     }
 
     public class WaveManager
@@ -26,23 +27,38 @@ namespace Space_Shooter_game
         public string BannerText { get; private set; } = "";
 
         private readonly int screenWidth;
+        private readonly int screenHeight;
         private int enemiesToSpawn;
         private int spawnTimer;
         private int spawnInterval;
         private int bannerTimer;
         private int clearTimer;
 
+        private HeavyTankEnemy boss;
+        private bool bossSpawned;
+        private bool miniWaveHandled;
+
         private readonly Random random = new Random();
 
-        public WaveManager(int screenWidth)
+        public WaveManager(int screenWidth, int screenHeight)
         {
             this.screenWidth = screenWidth;
+            this.screenHeight = screenHeight;
             StartWave(1);
         }
 
         private void StartWave(int waveNumber)
         {
             CurrentWave = waveNumber;
+
+            if (waveNumber > GameSettings.Wave.TotalWaves)
+            {
+                BannerText = "BOSS INCOMING";
+                bannerTimer = (int)(GameSettings.Wave.BannerDisplaySeconds * 60);
+                State = WaveState.ShowingBanner;
+                return;
+            }
+
             enemiesToSpawn = GameSettings.Wave.BaseEnemyCount + (waveNumber - 1) * GameSettings.Wave.EnemyCountPerWave;
             spawnInterval = (int)Math.Max(GameSettings.Wave.MinSpawnInterval,
                 GameSettings.Wave.BaseSpawnInterval - (waveNumber - 1) * GameSettings.Wave.SpawnIntervalDecayPerWave);
@@ -60,7 +76,7 @@ namespace Space_Shooter_game
                 case WaveState.ShowingBanner:
                     bannerTimer--;
                     if (bannerTimer <= 0)
-                        State = WaveState.Spawning;
+                        State = CurrentWave > GameSettings.Wave.TotalWaves ? WaveState.BossFight : WaveState.Spawning;
                     break;
 
                 case WaveState.Spawning:
@@ -86,16 +102,43 @@ namespace Space_Shooter_game
                     if (clearTimer <= 0)
                     {
                         gameManager.player.Score += GameSettings.Wave.ScoreBonusPerWave * CurrentWave;
-
-                        if (CurrentWave >= GameSettings.Wave.TotalWaves)
-                            State = WaveState.Cleared;
-                        else
-                            StartWave(CurrentWave + 1);
+                        StartWave(CurrentWave + 1);
                     }
                     break;
 
-                case WaveState.Cleared:
+                case WaveState.BossFight:
+                    UpdateBossFight(gameManager);
                     break;
+
+                case WaveState.Victory:
+                    break;
+            }
+        }
+
+        private void UpdateBossFight(GameManager gameManager)
+        {
+            if (!bossSpawned)
+            {
+                boss = new HeavyTankEnemy(screenWidth / 2f, -GameSettings.HeavyTankEnemy.CollisionRadius, screenHeight);
+                gameManager.enemyList.Add(boss);
+                bossSpawned = true;
+            }
+
+            if (boss.MiniWaveSpawnRequested && !miniWaveHandled)
+            {
+                SpawnMiniWave(gameManager);
+                miniWaveHandled = true;
+            }
+
+            if (miniWaveHandled && boss.Phase == BossPhase.MiniWaveWait &&
+                gameManager.enemyList.All(e => e is HeavyTankEnemy))
+            {
+                boss.NotifyMiniWaveCleared();
+            }
+
+            if (boss.DeathSequenceComplete)
+            {
+                State = WaveState.Victory;
             }
         }
 
@@ -103,9 +146,30 @@ namespace Space_Shooter_game
         {
             EnemyType type = PickWeightedEnemyType();
             float x = random.Next(40, screenWidth - 40);
-            float y = -70f;
+            Enemy enemy = CreateEnemy(type, x, -70f);
+            ApplyWaveScaling(enemy);
+            gameManager.enemyList.Add(enemy);
+        }
 
-            Enemy enemy = type switch
+        private void SpawnMiniWave(GameManager gameManager)
+        {
+            int count = random.Next(GameSettings.HeavyTankEnemy.MiniWaveMinEnemies,
+                GameSettings.HeavyTankEnemy.MiniWaveMaxEnemies + 1);
+
+            for (int i = 0; i < count; i++)
+            {
+                EnemyType type = PickWeightedEnemyType();
+                float x = random.Next(40, screenWidth - 40);
+                float y = -70f - i * 40f;
+                Enemy enemy = CreateEnemy(type, x, y);
+                ApplyWaveScaling(enemy);
+                gameManager.enemyList.Add(enemy);
+            }
+        }
+
+        private Enemy CreateEnemy(EnemyType type, float x, float y)
+        {
+            return type switch
             {
                 EnemyType.Standard => new StandardEnemy(x, y),
                 EnemyType.Scout => new ScoutEnemy(x, y),
@@ -113,9 +177,6 @@ namespace Space_Shooter_game
                 EnemyType.Terrorist => new TerroristEnemy(x, y),
                 _ => new StandardEnemy(x, y)
             };
-
-            ApplyWaveScaling(enemy);
-            gameManager.enemyList.Add(enemy);
         }
 
         private void ApplyWaveScaling(Enemy enemy)
