@@ -21,6 +21,7 @@ namespace Space_Shooter_game
             this.FormClosed += (s, e) => AudioManager.StopMusic();
 
             resume_btn.Click += resume_btn_Click;
+            restart_btn.Click += (s, e) => RestartGame();
             exit_btn.Click += exit_btn_Click;
             resume_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
             restart_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
@@ -30,6 +31,11 @@ namespace Space_Shooter_game
             victory_restart_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
             victory_menu_btn.Click += exit_btn_Click;
             victory_menu_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+
+            gameover_restart_btn.Click += (s, e) => RestartGame();
+            gameover_restart_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+            gameover_menu_btn.Click += exit_btn_Click;
+            gameover_menu_btn.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
 
             timer.Start();
         }
@@ -42,6 +48,7 @@ namespace Space_Shooter_game
         {
             pause_panel.Visible = false;
             victory_panel.Visible = false;
+            gameover_panel.Visible = false;
             gamePaused = false;
 
             gameManager = new GameManager(ClientSize.Width, ClientSize.Height);
@@ -63,7 +70,7 @@ namespace Space_Shooter_game
             float pcr = gameManager.player.CollisionRadius;
             if (e.KeyCode == Keys.Escape)
             {
-                if (!gamePaused && !victory_panel.Visible)
+                if (!gamePaused && !victory_panel.Visible && !gameover_panel.Visible)
                 {
                     PauseGame();
                     timer.Stop();
@@ -155,6 +162,18 @@ namespace Space_Shooter_game
             victory_panel.BringToFront();
         }
 
+        private void ShowGameOver()
+        {
+            timer.Stop();
+            AudioManager.StopMusic();
+
+            gameover_wave_label.Text = $"Reached Wave {gameManager.waveManager.CurrentWave}";
+            gameover_score_label.Text = $"Score: {gameManager.player.Score}";
+            gameover_coins_label.Text = $"Coins: {gameManager.player.Coins}";
+            gameover_panel.Visible = true;
+            gameover_panel.BringToFront();
+        }
+
         private void resume_btn_Click(object sender, EventArgs e)
         {
             pause_panel.Visible = false;
@@ -180,6 +199,12 @@ namespace Space_Shooter_game
             gameManager.Update();
             UpdateHUD();
             Invalidate();
+
+            if (gameManager.player.IsDead)
+            {
+                ShowGameOver();
+                return;
+            }
 
             if (gameManager.waveManager.State == WaveState.Victory)
             {
