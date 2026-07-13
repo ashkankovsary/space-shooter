@@ -184,7 +184,6 @@
             sfx_off.Size = new Size(82, 41);
             sfx_off.TabIndex = 3;
             sfx_off.TabStop = false;
-            sfx_off.Visible = false;
             sfx_off.Click += sfx_off_Click;
             // 
             // music_off
@@ -198,7 +197,6 @@
             music_off.Size = new Size(84, 38);
             music_off.TabIndex = 2;
             music_off.TabStop = false;
-            music_off.Visible = false;
             music_off.Click += music_off_Click;
             // 
             // sfx_label

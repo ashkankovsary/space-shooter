@@ -14,6 +14,26 @@ namespace Space_Shooter_game.Forms
         public OptionsForm()
         {
             InitializeComponent();
+            if (AudioManager.music)
+            {
+                music_on.Visible = true;
+                music_off.Visible = false;
+            }
+            else
+            {
+                music_on.Visible = false;
+                music_off.Visible = true;
+            }
+            if (AudioManager.sfx)
+            {
+                sfx_on.Visible = true;
+                sfx_off.Visible = false;
+            }
+            else
+            {
+                sfx_on.Visible = false;
+                sfx_off.Visible = true;
+            }
         }
 
         private void options_back_btn_Click(object sender, EventArgs e)
@@ -48,6 +68,7 @@ namespace Space_Shooter_game.Forms
             AudioManager.PlaySfx(Sounds.ClickButton);
             music_on.Visible = false;
             music_off.Visible = true;
+            AudioManager.music = false;
         }
 
         private void sfx_on_Click(object sender, EventArgs e)
@@ -55,6 +76,7 @@ namespace Space_Shooter_game.Forms
             AudioManager.PlaySfx(Sounds.ClickButton);
             sfx_on.Visible = false;
             sfx_off.Visible = true;
+            AudioManager.sfx = false;
         }
 
         private void music_off_Click(object sender, EventArgs e)
@@ -62,6 +84,7 @@ namespace Space_Shooter_game.Forms
             AudioManager.PlaySfx(Sounds.ClickButton);
             music_on.Visible = true;
             music_off.Visible = false;
+            AudioManager.music = true;
         }
 
         private void sfx_off_Click(object sender, EventArgs e)
@@ -69,6 +92,7 @@ namespace Space_Shooter_game.Forms
             AudioManager.PlaySfx(Sounds.ClickButton);
             sfx_on.Visible = true;
             sfx_off.Visible = false;
+            AudioManager.sfx = true;
         }
     }
 }
