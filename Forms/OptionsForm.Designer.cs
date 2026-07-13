@@ -68,6 +68,7 @@
             // 
             guide_btn.Anchor = AnchorStyles.None;
             guide_btn.BackColor = Color.DeepPink;
+            guide_btn.Cursor = Cursors.Hand;
             guide_btn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guide_btn.Location = new Point(488, 214);
             guide_btn.Name = "guide_btn";
@@ -80,6 +81,7 @@
             // options_back_btn
             // 
             options_back_btn.BackColor = Color.DeepPink;
+            options_back_btn.Cursor = Cursors.Hand;
             options_back_btn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             options_back_btn.Location = new Point(12, 12);
             options_back_btn.Name = "options_back_btn";
@@ -104,6 +106,7 @@
             // back_guide_btn
             // 
             back_guide_btn.BackColor = Color.DeepPink;
+            back_guide_btn.Cursor = Cursors.Hand;
             back_guide_btn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             back_guide_btn.Location = new Point(12, 12);
             back_guide_btn.Name = "back_guide_btn";
@@ -160,6 +163,7 @@
             // audio_back_btn
             // 
             audio_back_btn.BackColor = Color.DeepPink;
+            audio_back_btn.Cursor = Cursors.Hand;
             audio_back_btn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             audio_back_btn.Location = new Point(12, 12);
             audio_back_btn.Name = "audio_back_btn";
