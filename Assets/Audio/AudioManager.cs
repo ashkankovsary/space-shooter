@@ -21,6 +21,8 @@ namespace Space_Shooter_game
     {
         private static WaveOutEvent musicOutput;
         private static AudioFileReader musicReader;
+        public static bool music = true;
+        public static bool sfx = true;
 
         public static float MusicVolume = 0.2f;
         public static float SfxVolume = 0.2f;
@@ -30,6 +32,7 @@ namespace Space_Shooter_game
 
         public static void PlayMusic(string fileName, bool loop = true)
         {
+            if(!music) { return; }
             StopMusic();
 
             musicReader = new AudioFileReader(GetPath(fileName)) { Volume = MusicVolume };
@@ -65,6 +68,7 @@ namespace Space_Shooter_game
 
         public static void PlaySfx(string fileName)
         {
+            if(!sfx) { return; }
             var reader = new AudioFileReader(GetPath(fileName)) { Volume = SfxVolume };
             var output = new WaveOutEvent();
             output.Init(reader);

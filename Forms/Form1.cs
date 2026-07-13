@@ -2,6 +2,7 @@ using System.Xml.Linq;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Space_Shooter_game.Forms;
 
 namespace Space_Shooter_game
 {
@@ -28,7 +29,7 @@ namespace Space_Shooter_game
             exit.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
         }
 
-        protected override void ApplyLayout(){}
+        protected override void ApplyLayout() { }
         private void UpdateLayout()
         {
             float heightRatio = (float)this.ClientSize.Height / baseHeight;
@@ -73,6 +74,15 @@ namespace Space_Shooter_game
             PlayForm playForm = new PlayForm();
             playForm.FormClosed += (s, args) => this.Show();
             playForm.Show();
+        }
+
+        private void options_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            OptionsForm optionsForm = new OptionsForm();
+            optionsForm.FormClosed += (s, args) => this.Show();
+            optionsForm.Show();
         }
     }
 }
