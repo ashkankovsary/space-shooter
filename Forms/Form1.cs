@@ -84,5 +84,14 @@ namespace Space_Shooter_game
             optionsForm.FormClosed += (s, args) => this.Show();
             optionsForm.Show();
         }
+
+        private void shop_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            ShopForm shopForm = new ShopForm();
+            shopForm.FormClosed += (s, args) => this.Show();
+            shopForm.Show();
+        }
     }
 }
