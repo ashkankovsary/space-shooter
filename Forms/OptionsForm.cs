@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +14,22 @@ namespace Space_Shooter_game.Forms
         public OptionsForm()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            WindowState = FormWindowState.Maximized;
+        }
+
+        private void options_back_btn_Click(object sender, EventArgs e)
+        {
+            AudioManager.PlaySfx(Sounds.ClickButton);
+            this.Close();
+        }
+        private void guide_btn_Click(object sender, EventArgs e)
+        {
+            AudioManager.PlaySfx(Sounds.ClickButton);
+            guide_panel.Visible = true;
+        }
+        private void back_guide_btn_Click(object sender, EventArgs e)
+        {
+            AudioManager.PlaySfx(Sounds.ClickButton);
+            guide_panel.Visible = false;
         }
     }
 }
