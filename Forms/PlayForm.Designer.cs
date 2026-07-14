@@ -310,7 +310,9 @@
             // wave_banner
             // 
             wave_banner.AutoSize = true;
-            wave_banner.BackColor = Color.FromArgb(40, 40, 40);
+            wave_banner.BackColor = Color.Transparent;
+            wave_banner.ForeColor = Color.FromArgb(180, 255, 215, 0);
+            wave_banner.UseCompatibleTextRendering = true;
             wave_banner.Font = new Font("Segoe UI", 40F, FontStyle.Bold, GraphicsUnit.Point, 0);
             wave_banner.ForeColor = Color.Gold;
             wave_banner.Location = new Point(0, 0);

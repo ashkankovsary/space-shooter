@@ -83,7 +83,7 @@
             public static readonly int MaxHP = 10000;
             public static readonly int ScoreValue = 5000;
             public static readonly int bulletDamage = 20;
-            public static readonly int bulletDirections = 10;
+            public static readonly int bulletDirections = 8;
 
             public static readonly float TargetYRatio = 0.25f;
 
@@ -104,7 +104,7 @@
             public static readonly int MiniWaveMinEnemies = 20;
             public static readonly int MiniWaveMaxEnemies = 30;
 
-            public static readonly float AmbientSpawnInterval = 30f;
+            public static readonly float AmbientSpawnInterval = 50f;
 
             public static readonly float MinShotAngleShiftDeg = 10f;
             public static readonly float MaxShotAngleShiftDeg = 40f;
