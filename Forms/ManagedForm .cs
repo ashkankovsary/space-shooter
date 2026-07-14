@@ -113,6 +113,7 @@ namespace Space_Shooter_game
             foreach (Control c in target.Controls)
                 c.Enabled = enabled;
         }
+        // ManagedForm .cs
         private void ManagedForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (ActiveChild != null && !ActiveChild.IsDisposed)
@@ -131,6 +132,7 @@ namespace Space_Shooter_game
 
                 ParentManagedForm.SetChildControlsEnabled(ParentManagedForm, true);
                 ParentManagedForm.ActiveChild = null;
+                ParentManagedForm.Show();
             }
         }
     }
