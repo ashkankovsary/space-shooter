@@ -1,4 +1,5 @@
 ﻿using NAudio.Wave;
+using Space_Shooter_game.Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,8 @@ namespace Space_Shooter_game.Forms
         public OptionsForm()
         {
             InitializeComponent();
+            AudioManager.music = Database.IsMusicEnabled();
+            AudioManager.sfx = Database.IsSfxEnabled();
             if (AudioManager.music)
             {
                 music_on.Visible = true;
@@ -39,6 +42,8 @@ namespace Space_Shooter_game.Forms
         private void options_back_btn_Click(object sender, EventArgs e)
         {
             AudioManager.PlaySfx(Sounds.ClickButton);
+            Database.SetMusicEnabled(music_on.Visible);
+            Database.SetSfxEnabled(sfx_on.Visible);
             this.Close();
         }
         private void guide_btn_Click(object sender, EventArgs e)
