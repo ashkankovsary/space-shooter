@@ -55,6 +55,7 @@ namespace Space_Shooter_game
             gameManager = new GameManager(ClientSize.Width, ClientSize.Height);
             AudioManager.PlayMusic(Sounds.MusicWave1To9);
             gameManager.player.Coins = Database.GetCoins();
+            gameManager.player.HighScore = Database.GetHighScore();
 
             timer.Start();
         }
@@ -66,6 +67,7 @@ namespace Space_Shooter_game
             hpbar.Location = new Point(ClientSize.Width - 350, 20);
             wave_label.Location = new Point((ClientSize.Width - wave_label.Width) / 2, 21);
             gameManager.player.Coins = Database.GetCoins();
+            gameManager.player.HighScore = Database.GetHighScore();
             AudioManager.PlayMusic(Sounds.MusicWave1To9);
         }
         private void PlayForm_KeyDown(object sender, KeyEventArgs e)
@@ -112,6 +114,7 @@ namespace Space_Shooter_game
             hpbar.CurrentHP = gameManager.player.CurrentHP;
             wave_label.Text = $"Wave {gameManager.waveManager.CurrentWave}";
             wave_label.Location = new Point((ClientSize.Width - wave_label.Width) / 2, 21);
+            high_score.Text = $"High Score : {gameManager.player.HighScore}";
 
             bool showBanner = gameManager.waveManager.State == WaveState.ShowingBanner;
             wave_banner.Visible = showBanner;
@@ -206,6 +209,8 @@ namespace Space_Shooter_game
             if (gameManager.player.IsDead)
             {
                 Database.SetCoins(gameManager.player.Coins);
+                if(gameManager.player.Score > gameManager.player.HighScore)
+                    Database.SetHighScore(gameManager.player.Score);
                 ShowGameOver();
                 return;
             }
@@ -213,6 +218,8 @@ namespace Space_Shooter_game
             if (gameManager.waveManager.State == WaveState.Victory)
             {
                 Database.SetCoins(gameManager.player.Coins);
+                if (gameManager.player.Score > gameManager.player.Score)
+                    Database.SetHighScore(gameManager.player.HighScore);
                 ShowVictory();
             }
         }

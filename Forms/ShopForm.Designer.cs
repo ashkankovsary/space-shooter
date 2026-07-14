@@ -118,35 +118,38 @@
             // ship3
             // 
             ship3.BackColor = Color.LightGreen;
-            ship3.IsOwned = false;
-            ship3.ItemImage = null;
+            ship3.Isowned = false;
+            ship3.ItemImage = (Image)resources.GetObject("ship3.ItemImage");
             ship3.Location = new Point(630, 35);
             ship3.Name = "ship3";
             ship3.Price = "0";
             ship3.Size = new Size(225, 300);
             ship3.TabIndex = 3;
+            ship3.Click += ship3_Click;
             // 
             // ship2
             // 
             ship2.BackColor = Color.LightGreen;
-            ship2.IsOwned = false;
-            ship2.ItemImage = null;
+            ship2.Isowned = false;
+            ship2.ItemImage = (Image)resources.GetObject("ship2.ItemImage");
             ship2.Location = new Point(330, 35);
             ship2.Name = "ship2";
             ship2.Price = "0";
             ship2.Size = new Size(225, 300);
             ship2.TabIndex = 2;
+            ship2.Click += ship2_Click;
             // 
             // ship1
             // 
             ship1.BackColor = Color.LightGreen;
-            ship1.IsOwned = false;
-            ship1.ItemImage = null;
+            ship1.Isowned = false;
+            ship1.ItemImage = (Image)resources.GetObject("ship1.ItemImage");
             ship1.Location = new Point(30, 35);
             ship1.Name = "ship1";
             ship1.Price = "0";
             ship1.Size = new Size(225, 300);
             ship1.TabIndex = 1;
+            ship1.Click += ship1_Click;
             // 
             // ship_label
             // 
@@ -173,24 +176,26 @@
             // bullet2
             // 
             bullet2.BackColor = Color.MediumSlateBlue;
-            bullet2.IsOwned = false;
-            bullet2.ItemImage = null;
+            bullet2.Isowned = false;
+            bullet2.ItemImage = (Image)resources.GetObject("bullet2.ItemImage");
             bullet2.Location = new Point(330, 35);
             bullet2.Name = "bullet2";
             bullet2.Price = "0";
             bullet2.Size = new Size(225, 300);
             bullet2.TabIndex = 2;
+            bullet2.Click += bullet2_Click;
             // 
             // bullet1
             // 
             bullet1.BackColor = Color.MediumSlateBlue;
-            bullet1.IsOwned = false;
-            bullet1.ItemImage = null;
+            bullet1.Isowned = false;
+            bullet1.ItemImage = (Image)resources.GetObject("bullet1.ItemImage");
             bullet1.Location = new Point(30, 35);
             bullet1.Name = "bullet1";
             bullet1.Price = "0";
             bullet1.Size = new Size(225, 300);
             bullet1.TabIndex = 1;
+            bullet1.Click += bullet1_Click;
             // 
             // bullet
             // 
@@ -231,35 +236,38 @@
             // enemy3
             // 
             enemy3.BackColor = Color.Teal;
-            enemy3.IsOwned = false;
-            enemy3.ItemImage = null;
+            enemy3.Isowned = false;
+            enemy3.ItemImage = (Image)resources.GetObject("enemy3.ItemImage");
             enemy3.Location = new Point(630, 35);
             enemy3.Name = "enemy3";
             enemy3.Price = "0";
             enemy3.Size = new Size(225, 300);
             enemy3.TabIndex = 3;
+            enemy3.Click += enemy3_Click;
             // 
             // enemy2
             // 
             enemy2.BackColor = Color.Teal;
-            enemy2.IsOwned = false;
-            enemy2.ItemImage = null;
+            enemy2.Isowned = false;
+            enemy2.ItemImage = (Image)resources.GetObject("enemy2.ItemImage");
             enemy2.Location = new Point(330, 35);
             enemy2.Name = "enemy2";
             enemy2.Price = "0";
             enemy2.Size = new Size(225, 300);
             enemy2.TabIndex = 2;
+            enemy2.Click += enemy2_Click;
             // 
             // enemy1
             // 
             enemy1.BackColor = Color.Teal;
-            enemy1.IsOwned = false;
-            enemy1.ItemImage = null;
+            enemy1.Isowned = false;
+            enemy1.ItemImage = (Image)resources.GetObject("enemy1.ItemImage");
             enemy1.Location = new Point(30, 35);
             enemy1.Name = "enemy1";
             enemy1.Price = "0";
             enemy1.Size = new Size(225, 300);
             enemy1.TabIndex = 1;
+            enemy1.Click += enemy1_Click;
             // 
             // enemy_label
             // 
@@ -287,24 +295,26 @@
             // e_bullet2
             // 
             e_bullet2.BackColor = Color.Salmon;
-            e_bullet2.IsOwned = false;
-            e_bullet2.ItemImage = null;
+            e_bullet2.Isowned = false;
+            e_bullet2.ItemImage = (Image)resources.GetObject("e_bullet2.ItemImage");
             e_bullet2.Location = new Point(330, 35);
             e_bullet2.Name = "e_bullet2";
             e_bullet2.Price = "0";
             e_bullet2.Size = new Size(225, 300);
             e_bullet2.TabIndex = 2;
+            e_bullet2.Click += e_bullet2_Click;
             // 
             // e_bullet1
             // 
             e_bullet1.BackColor = Color.Salmon;
-            e_bullet1.IsOwned = false;
-            e_bullet1.ItemImage = null;
+            e_bullet1.Isowned = false;
+            e_bullet1.ItemImage = (Image)resources.GetObject("e_bullet1.ItemImage");
             e_bullet1.Location = new Point(30, 35);
             e_bullet1.Name = "e_bullet1";
             e_bullet1.Price = "0";
             e_bullet1.Size = new Size(225, 300);
             e_bullet1.TabIndex = 1;
+            e_bullet1.Click += e_bullet1_Click;
             // 
             // bullet_label
             // 
@@ -333,35 +343,38 @@
             // back3
             // 
             back3.BackColor = Color.Khaki;
-            back3.IsOwned = false;
-            back3.ItemImage = null;
+            back3.Isowned = false;
+            back3.ItemImage = (Image)resources.GetObject("back3.ItemImage");
             back3.Location = new Point(630, 35);
             back3.Name = "back3";
             back3.Price = "0";
             back3.Size = new Size(225, 300);
             back3.TabIndex = 3;
+            back3.Click += back3_Click;
             // 
             // back2
             // 
             back2.BackColor = Color.Khaki;
-            back2.IsOwned = false;
-            back2.ItemImage = null;
+            back2.Isowned = false;
+            back2.ItemImage = (Image)resources.GetObject("back2.ItemImage");
             back2.Location = new Point(330, 35);
             back2.Name = "back2";
             back2.Price = "0";
             back2.Size = new Size(225, 300);
             back2.TabIndex = 2;
+            back2.Click += back2_Click;
             // 
             // back1
             // 
             back1.BackColor = Color.Khaki;
-            back1.IsOwned = false;
-            back1.ItemImage = null;
+            back1.Isowned = false;
+            back1.ItemImage = (Image)resources.GetObject("back1.ItemImage");
             back1.Location = new Point(30, 35);
             back1.Name = "back1";
             back1.Price = "0";
             back1.Size = new Size(225, 300);
             back1.TabIndex = 1;
+            back1.Click += back1_Click;
             // 
             // back_label
             // 

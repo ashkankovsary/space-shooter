@@ -44,6 +44,7 @@
             item.Location = new Point(3, 3);
             item.Name = "item";
             item.Size = new Size(220, 170);
+            item.SizeMode = PictureBoxSizeMode.Zoom;
             item.TabIndex = 0;
             item.TabStop = false;
             // 

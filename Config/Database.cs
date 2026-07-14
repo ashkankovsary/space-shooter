@@ -50,15 +50,51 @@ namespace Space_Shooter_game.Config
 
                 if (count == 0)
                 {
-                    ExecuteNonQuery(@"INSERT INTO PlayerData VALUES(1, 0, 0, 1, 1)");
+                    ExecuteNonQuery(@"INSERT INTO PlayerData VALUES(1, 20, 0, 1, 1)");
                 }
+
+                SeedShopItems();
             }
         }
 
         #endregion
 
         #region Base Methods
+        private static void AddShopItem(string category, string name, int price, bool owned, bool selected)
+        {
+            ExecuteNonQuery(@"INSERT INTO ShopItems(Category, Name, Price, Owned, Selected) 
+                            VALUES(@category, @name, @price, @owned, @selected)",
+            new SQLiteParameter("@category", category),
+            new SQLiteParameter("@name", name),
+            new SQLiteParameter("@price", price),
+            new SQLiteParameter("@owned", owned ? 1 : 0),
+            new SQLiteParameter("@selected", selected ? 1 : 0));
+        }
+        private static void SeedShopItems()
+        {
+            int count = ExecuteScalar<int>("SELECT COUNT(*) FROM ShopItems");
 
+            if (count > 0)
+                return;
+
+            AddShopItem("Ship", "Blue Ship", 0, true, true);
+            AddShopItem("Ship", "Red Ship", 5, false, false);
+            AddShopItem("Ship", "Green Ship", 10, false, false);
+
+            AddShopItem("PlayerBullet", "Blue Bullet", 0, true, true);
+            AddShopItem("PlayerBullet", "Red Bullet", 5, false, false);
+
+            AddShopItem("Enemy", "Classic Enemy", 0, true, true);
+            AddShopItem("Enemy", "Alien Enemy", 5, false, false);
+            AddShopItem("Enemy", "Robot Enemy", 10, false, false);
+
+            AddShopItem("EnemyBullet", "Red Laser", 0, true, true);
+            AddShopItem("EnemyBullet", "Purple Plasma", 5, false, false);
+
+            AddShopItem("Background", "Galaxy", 0, true, true);
+            AddShopItem("Background", "Nebula", 5, false, false);
+            AddShopItem("Background", "Deep Space", 10, false, false);
+        }
         public static void ExecuteNonQuery(string sql, params SQLiteParameter[] parameters)
         {
             using (SQLiteConnection connection = new SQLiteConnection(Connection))
@@ -193,6 +229,11 @@ namespace Space_Shooter_game.Config
             return ExecuteScalar<int>("SELECT Owned FROM ShopItems WHERE Id=@id", new SQLiteParameter("@id", id)) == 1;
         }
 
+        public static bool IsSelected(int id)
+        {
+            return ExecuteScalar<int>("SELECT Selected FROM ShopItems WHERE Id=@id", new SQLiteParameter("@id", id)) == 1;
+        }
+
         public static void SelectItem(int id)
         {
             string category = ExecuteScalar<string>("SELECT Category FROM ShopItems WHERE Id=@id", new SQLiteParameter("@id", id));
@@ -205,6 +246,10 @@ namespace Space_Shooter_game.Config
             return ExecuteScalar<int>("SELECT Id FROM ShopItems WHERE Category=@cat AND Selected=1", new SQLiteParameter("@cat", category));
         }
 
+        public static int GetItemPrice(int itemId)
+        {
+            return ExecuteScalar<int>("SELECT Price FROM ShopItems WHERE Id = @id", new SQLiteParameter("@id", itemId));
+        }
         public static List<Dictionary<string, object>> GetItems(string category)
         {
             return ExecuteReader("SELECT * FROM ShopItems WHERE Category=@cat", new SQLiteParameter("@cat", category));
