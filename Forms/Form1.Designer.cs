@@ -78,6 +78,7 @@
             shop.TabIndex = 2;
             shop.Text = "Shop";
             shop.UseVisualStyleBackColor = false;
+            shop.Click += shop_Click;
             // 
             // options
             // 
@@ -92,6 +93,7 @@
             options.TabIndex = 3;
             options.Text = "Options";
             options.UseVisualStyleBackColor = false;
+            options.Click += options_Click;
             // 
             // about
             // 
