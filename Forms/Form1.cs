@@ -2,6 +2,8 @@ using System.Xml.Linq;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Space_Shooter_game.Forms;
+using Space_Shooter_game.Config;
 
 namespace Space_Shooter_game
 {
@@ -26,9 +28,12 @@ namespace Space_Shooter_game
             options.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
             about.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
             exit.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
+
+            AudioManager.music = Database.IsMusicEnabled();
+            AudioManager.sfx = Database.IsSfxEnabled();
         }
 
-        protected override void ApplyLayout(){}
+        protected override void ApplyLayout() { }
         private void UpdateLayout()
         {
             float heightRatio = (float)this.ClientSize.Height / baseHeight;
@@ -60,6 +65,8 @@ namespace Space_Shooter_game
 
         private void exit_Click(object sender, EventArgs e)
         {
+            Database.SetMusicEnabled(AudioManager.music);
+            Database.SetSfxEnabled(AudioManager.sfx);
             this.Close();
         }
         private void about_Click(object sender, EventArgs e)
@@ -73,6 +80,24 @@ namespace Space_Shooter_game
             PlayForm playForm = new PlayForm();
             playForm.FormClosed += (s, args) => this.Show();
             playForm.Show();
+        }
+
+        private void options_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            OptionsForm optionsForm = new OptionsForm();
+            optionsForm.FormClosed += (s, args) => this.Show();
+            optionsForm.Show();
+        }
+
+        private void shop_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            ShopForm shopForm = new ShopForm();
+            shopForm.FormClosed += (s, args) => this.Show();
+            shopForm.Show();
         }
     }
 }

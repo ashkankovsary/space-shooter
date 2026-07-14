@@ -34,6 +34,7 @@
             powerup1_icon = new PictureBox();
             timer = new System.Windows.Forms.Timer(components);
             top_panel = new Panel();
+            high_score = new Label();
             EX_icon = new PictureBox();
             pic_coin = new PictureBox();
             coin = new Label();
@@ -226,6 +227,7 @@
             // top_panel
             // 
             top_panel.BackColor = Color.FromArgb(40, 40, 40);
+            top_panel.Controls.Add(high_score);
             top_panel.Controls.Add(EX_icon);
             top_panel.Controls.Add(pic_coin);
             top_panel.Controls.Add(coin);
@@ -238,6 +240,17 @@
             top_panel.Name = "top_panel";
             top_panel.Size = new Size(1221, 70);
             top_panel.TabIndex = 4;
+            // 
+            // high_score
+            // 
+            high_score.AutoSize = true;
+            high_score.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            high_score.ForeColor = Color.White;
+            high_score.Location = new Point(289, 21);
+            high_score.Name = "high_score";
+            high_score.Size = new Size(144, 28);
+            high_score.TabIndex = 8;
+            high_score.Text = "High Score : 0";
             // 
             // EX_icon
             // 
@@ -557,5 +570,6 @@
         private Label gameover_coins_label;
         private Button gameover_restart_btn;
         private Button gameover_menu_btn;
+        private Label high_score;
     }
 }

@@ -6,6 +6,7 @@ namespace Space_Shooter_game
     {
         public int Score;
         public int Coins;
+        public int HighScore;
         public int shootCooldown;
         private int shootTimer;
         public int TripleShotTimer;
