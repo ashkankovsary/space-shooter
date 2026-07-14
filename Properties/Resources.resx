@@ -121,6 +121,12 @@
   <data name="boss_explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>boss_explosion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="boss_explosion_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>boss_explosion_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boss_explosion_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>boss_explosion_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="coin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>coin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,20 +136,53 @@
   <data name="enemy_bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>enemy_bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="enemy_bullet2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_bullet2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="enemy_scout" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>enemy_scout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy_scout_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_scout_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy_scout_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_scout_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="enemy_ship_explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>enemy_ship_explosion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="enemy_ship_explosion_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_ship_explosion_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy_ship_explosion_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_ship_explosion_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="enemy_shooter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>enemy_shooter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy_shooter_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_shooter_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy_shooter_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_shooter_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="enemy_standard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>enemy_standard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="enemy_standard_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_standard_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy_standard_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_standard_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="enemy_terrorist" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>enemy_terrorist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy_terrorist_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_terrorist_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy_terrorist_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enemy_terrorist_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ex" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ex.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,14 +205,47 @@
   <data name="heavy_tank_boss4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>heavy_tank_boss4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="heavy_tank_boss_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>heavy_tank_boss_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="heavy_tank_boss_red2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>heavy_tank_boss_red2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="heavy_tank_boss_red3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>heavy_tank_boss_red3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="heavy_tank_boss_red4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>heavy_tank_boss_red4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="heavy_tank_boss_yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>heavy_tank_boss_yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="heavy_tank_boss_yellow2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>heavy_tank_boss_yellow2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="heavy_tank_boss_yellow3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>heavy_tank_boss_yellow3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="heavy_tank_boss_yellow4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>heavy_tank_boss_yellow4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>lock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="player_bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>player_bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_bullet2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>player_bullet2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="player_shield" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>player_shield.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="player_ship" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>player_ship.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_ship2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>player_ship2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="player_ship_explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>player_ship_explosion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
