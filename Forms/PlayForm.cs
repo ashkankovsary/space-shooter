@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Space_Shooter_game.Config;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using static Space_Shooter_game.GameSettings;
@@ -53,6 +54,7 @@ namespace Space_Shooter_game
 
             gameManager = new GameManager(ClientSize.Width, ClientSize.Height);
             AudioManager.PlayMusic(Sounds.MusicWave1To9);
+            gameManager.player.Coins = Database.GetCoins();
 
             timer.Start();
         }
@@ -63,6 +65,7 @@ namespace Space_Shooter_game
             hp_label.Location = new Point(ClientSize.Width - 390, 15);
             hpbar.Location = new Point(ClientSize.Width - 350, 20);
             wave_label.Location = new Point((ClientSize.Width - wave_label.Width) / 2, 21);
+            gameManager.player.Coins = Database.GetCoins();
             AudioManager.PlayMusic(Sounds.MusicWave1To9);
         }
         private void PlayForm_KeyDown(object sender, KeyEventArgs e)
@@ -202,12 +205,14 @@ namespace Space_Shooter_game
 
             if (gameManager.player.IsDead)
             {
+                Database.SetCoins(gameManager.player.Coins);
                 ShowGameOver();
                 return;
             }
 
             if (gameManager.waveManager.State == WaveState.Victory)
             {
+                Database.SetCoins(gameManager.player.Coins);
                 ShowVictory();
             }
         }
