@@ -13,31 +13,22 @@ namespace Space_Shooter_game
         public AboutForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
 
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-
+            backButton.Click += (s, e) => AudioManager.PlaySfx(Sounds.ClickButton);
 
             descriptionBox.BorderStyle = BorderStyle.None;
             descriptionBox.Cursor = Cursors.Default;
             descriptionBox.TabStop = false;
         }
 
-        protected override void ApplyLayout()
-        {
-            if (ParentManagedForm == null) return;
-
-            int height = 600;
-            int width = 1000;
-
-            this.Size = new Size(width, height);
-        }
+        protected override bool SyncsLocationWithParent => false;
+        protected override void ApplyLayout() { }
 
         private void backButton_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.ParentManagedForm.Show();
         }
     }
 }

@@ -40,15 +40,17 @@
             // 
             title.Anchor = AnchorStyles.None;
             title.AutoSize = true;
+            title.BackColor = Color.Transparent;
             title.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            title.ForeColor = Color.LimeGreen;
-            title.Location = new Point(220, 10);
+            title.ForeColor = Color.FromArgb(0, 0, 0, 0);
+            title.Location = new Point(222, 9);
             title.Margin = new Padding(0);
             title.Name = "title";
-            title.Size = new Size(335, 62);
+            title.Size = new Size(334, 72);
             title.TabIndex = 0;
             title.Text = "Space Shooter";
             title.TextAlign = ContentAlignment.MiddleCenter;
+            title.UseCompatibleTextRendering = true;
             // 
             // play
             // 

@@ -156,31 +156,47 @@
             bottom_panel.Name = "bottom_panel";
             bottom_panel.Size = new Size(1221, 70);
             bottom_panel.TabIndex = 4;
+            //
+            // 
+            //
+            int eachPowerUp = 400;
+            int space = 100;
             // 
             // powerup3
             // 
+            powerup3.TabIndex = 2;
             powerup3.CurrentHP = 100;
-            powerup3.Location = new Point(2, 18);
+            powerup3.Location = new Point(powerup3.TabIndex * (eachPowerUp + space) + space + 45, 18);
             powerup3.MaxHP = 100;
             powerup3.Name = "powerup3";
-            powerup3.Size = new Size(400, 36);
-            powerup3.TabIndex = 2;
+            powerup3.Size = new Size(eachPowerUp - 66, 36);
             powerup3.Text = "hPbar2";
             powerup3.Visible = false;
             // 
+            // powerup2
+            // 
+            powerup2.TabIndex = 1;
+            powerup2.CurrentHP = 100;
+            powerup2.Location = new Point(powerup2.TabIndex * (eachPowerUp + space) + space + 45, 18);
+            powerup2.MaxHP = 100;
+            powerup2.Name = "powerup2";
+            powerup2.Size = new Size(eachPowerUp - 66, 36);
+            powerup2.Text = "hPbar1";
+            powerup2.Visible = false;
+            // 
             // powerup1
             // 
+            powerup1.TabIndex = 0;
             powerup1.CurrentHP = 100;
-            powerup1.Location = new Point(0, 18);
+            powerup1.Location = new Point(powerup1.TabIndex * (eachPowerUp + space) + space + 45, 18);
             powerup1.MaxHP = 100;
             powerup1.Name = "powerup1";
-            powerup1.Size = new Size(400, 36);
-            powerup1.TabIndex = 0;
+            powerup1.Size = new Size(eachPowerUp - 66, 36);
             powerup1.Text = "hPbar1";
             // 
             // powerup3_icon
             // 
-            powerup3_icon.Location = new Point(2, 18);
+            powerup3_icon.Location = new Point(powerup3.TabIndex * (eachPowerUp + space) + space, 18);
             powerup3_icon.Name = "powerup3_icon";
             powerup3_icon.Size = new Size(36, 36);
             powerup3_icon.SizeMode = PictureBoxSizeMode.Zoom;
@@ -188,20 +204,9 @@
             powerup3_icon.TabStop = false;
             powerup3_icon.Visible = false;
             // 
-            // powerup2
-            // 
-            powerup2.CurrentHP = 100;
-            powerup2.Location = new Point(1, 18);
-            powerup2.MaxHP = 100;
-            powerup2.Name = "powerup2";
-            powerup2.Size = new Size(400, 36);
-            powerup2.TabIndex = 1;
-            powerup2.Text = "hPbar1";
-            powerup2.Visible = false;
-            // 
             // powerup2_icon
             // 
-            powerup2_icon.Location = new Point(1, 18);
+            powerup2_icon.Location = new Point(powerup2.TabIndex * (eachPowerUp + space) + space, 18);
             powerup2_icon.Name = "powerup2_icon";
             powerup2_icon.Size = new Size(36, 36);
             powerup2_icon.SizeMode = PictureBoxSizeMode.Zoom;
@@ -211,7 +216,7 @@
             // 
             // powerup1_icon
             // 
-            powerup1_icon.Location = new Point(0, 18);
+            powerup1_icon.Location = new Point(powerup1.TabIndex * (eachPowerUp + space) + space, 18);
             powerup1_icon.Name = "powerup1_icon";
             powerup1_icon.Size = new Size(36, 36);
             powerup1_icon.SizeMode = PictureBoxSizeMode.Zoom;
@@ -318,7 +323,9 @@
             // wave_banner
             // 
             wave_banner.AutoSize = true;
-            wave_banner.BackColor = Color.FromArgb(40, 40, 40);
+            wave_banner.BackColor = Color.Transparent;
+            wave_banner.ForeColor = Color.FromArgb(180, 255, 215, 0);
+            wave_banner.UseCompatibleTextRendering = true;
             wave_banner.Font = new Font("Segoe UI", 40F, FontStyle.Bold, GraphicsUnit.Point, 0);
             wave_banner.ForeColor = Color.Gold;
             wave_banner.Location = new Point(0, 0);

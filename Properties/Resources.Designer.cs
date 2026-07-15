@@ -93,6 +93,16 @@ namespace Space_Shooter_game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap earth_view {
+            get {
+                object obj = ResourceManager.GetObject("earth_view", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap enemy_bullet {
             get {
                 object obj = ResourceManager.GetObject("enemy_bullet", resourceCulture);

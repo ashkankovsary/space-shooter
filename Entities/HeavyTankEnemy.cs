@@ -164,6 +164,24 @@ namespace Space_Shooter_game
         {
             Image img = GetCurrentSprite();
             g.DrawImage(img, X - img.Width / 2f, Y - img.Height / 2f, img.Width, img.Height);
+
+            if (Phase != BossPhase.Dying)
+                DrawHealthBar(g, img);
+        }
+
+        private void DrawHealthBar(Graphics g, Image img)
+        {
+            float barWidth = 300f, barHeight = 18f;
+            float barX = X - barWidth / 2f;
+            float barY = Y - img.Height / 2f - barHeight - 10f;
+
+            float percent = (float)CurrentHP / MaxHP;
+            Color hpColor = percent >= 0.65f ? Color.LimeGreen : percent >= 0.30f ? Color.Gold : Color.Red;
+
+            g.FillRectangle(Brushes.DarkGray, barX, barY, barWidth, barHeight);
+            using (SolidBrush brush = new SolidBrush(hpColor))
+                g.FillRectangle(brush, barX, barY, barWidth * percent, barHeight);
+            g.DrawRectangle(Pens.Black, barX, barY, barWidth, barHeight);
         }
 
         private Image GetCurrentSprite()

@@ -51,7 +51,7 @@ namespace Space_Shooter_game
             victory_panel.Visible = false;
             gameover_panel.Visible = false;
             gamePaused = false;
-
+            this.ActiveControl = null;
             gameManager = new GameManager(ClientSize.Width, ClientSize.Height);
             AudioManager.PlayMusic(Sounds.MusicWave1To9);
             gameManager.player.Coins = Database.GetCoins();
@@ -86,6 +86,10 @@ namespace Space_Shooter_game
             if (e.KeyCode == Keys.A) gameManager.player.MovingLeft = true;
             if (e.KeyCode == Keys.D) gameManager.player.MovingRight = true;
             if (e.KeyCode == Keys.Space) gameManager.player.Shooting = true;
+
+            if (e.KeyCode is Keys.W or Keys.A or Keys.S or Keys.D or Keys.Space)
+                e.Handled = true;
+
         }
 
         private void PlayForm_KeyUp(object sender, KeyEventArgs e)
@@ -95,6 +99,9 @@ namespace Space_Shooter_game
             if (e.KeyCode == Keys.A) gameManager.player.MovingLeft = false;
             if (e.KeyCode == Keys.D) gameManager.player.MovingRight = false;
             if (e.KeyCode == Keys.Space) gameManager.player.Shooting = false;
+
+            if (e.KeyCode is Keys.W or Keys.A or Keys.S or Keys.D or Keys.Space)
+                e.Handled = true;
         }
 
         private void PauseGame()
@@ -165,6 +172,7 @@ namespace Space_Shooter_game
             victory_score_label.Text = $"Score: {gameManager.player.Score}";
             victory_coins_label.Text = $"Coins: {gameManager.player.Coins}";
             victory_panel.Visible = true;
+            this.ActiveControl = null;
             victory_panel.BringToFront();
         }
 
@@ -177,6 +185,7 @@ namespace Space_Shooter_game
             gameover_score_label.Text = $"Score: {gameManager.player.Score}";
             gameover_coins_label.Text = $"Coins: {gameManager.player.Coins}";
             gameover_panel.Visible = true;
+            this.ActiveControl = null;
             gameover_panel.BringToFront();
         }
 
@@ -184,11 +193,13 @@ namespace Space_Shooter_game
         {
             pause_panel.Visible = false;
             gamePaused = false;
+            this.ActiveControl = null;
             timer.Start();
         }
 
         private void exit_btn_Click(object sender, EventArgs e)
         {
+            this.ActiveControl = null;
             this.Close();
         }
 

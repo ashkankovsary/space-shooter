@@ -15,11 +15,33 @@ namespace Space_Shooter_game
         public Form1()
         {
             InitializeComponent();
-            this.Resize += (s, e) => UpdateLayout();
-            this.ResizeEnd += (s, e) => UpdateLayout();
-            this.Load += (s, e) => UpdateLayout();
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
 
-            this.MinimumSize = new Size(1000, 600);
+            this.BackgroundImage = Properties.Resources.earth_view;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+
+            int space = 20;
+            int width_b = 600;
+            int width_m = (width_b - space) / 2;
+            int height = 70;
+            int tx = 100;
+            play.Height = height; play.Width = width_b;
+            shop.Height = height; shop.Width = width_b;
+            options.Height = height; options.Width = width_m;
+            about.Height = height; about.Width = width_m;
+            exit.Height = height; exit.Width = width_m;
+
+            int sz = 50;
+            title.Width = 200;
+            title.Font = new Font(title.Font.FontFamily, sz, title.Font.Style);
+            title.Location = new Point((int)((this.ClientSize.Width - title.Width) / 2), -100);
+            play.Location = new Point((int)(this.ClientSize.Width - width_b) / 2, tx);
+            shop.Location = new Point((int)(this.ClientSize.Width - width_b) / 2, tx + space + height);
+            options.Location = new Point((int)(this.ClientSize.Width - width_b) / 2, tx + 2 * space + 2 * height);
+            about.Location = new Point((int)(this.ClientSize.Width + space) / 2, tx + 2 * space + 2 * height);
+            exit.Location = new Point((int)(this.ClientSize.Width - width_m) / 2, tx + 3 * space + 3 * height);
+
 
             about.Click += about_Click;
             play.Click += play_Click;
